@@ -1,10 +1,23 @@
 import Link from 'next/link';
-import Header from '@/components/Header';
+import MarketingLayout from '@/components/MarketingLayout';
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Giới Thiệu - DiemDanh.net | Hệ Thống Điểm Danh Thông Minh",
+  description: "Tìm hiểu về DiemDanh.net - giải pháp chấm công thông minh với GPS, QR code và AI. Tiết kiệm chi phí, quản lý nhân viên hiệu quả. Dùng thử miễn phí 7 ngày.",
+  keywords: "giới thiệu diemdanh, về chúng tôi, hệ thống điểm danh, chấm công GPS, quản lý nhân viên",
+  openGraph: {
+    title: 'Giới Thiệu - DiemDanh.net',
+    description: 'Hệ thống chấm công cho thời đại số. Chính xác, nhanh chóng và tiết kiệm.',
+    url: '/about',
+    type: 'website',
+  },
+};
 
 export default function AboutPage() {
   return (
-    <main className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
-      <Header />
+    <MarketingLayout>
+      <main className="bg-gradient-to-br from-blue-50 to-indigo-100">
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
         {/* Hero Section with CTA */}
@@ -215,7 +228,7 @@ export default function AboutPage() {
           <div className="grid md:grid-cols-3 gap-6">
             {/* Basic */}
             <div className="bg-white rounded-2xl shadow-lg p-8 border-2 border-gray-200">
-              <h4 className="text-xl font-bold text-gray-800 mb-2">Cơ Bản</h4>
+              <h4 className="text-xl font-bold text-gray-800 mb-2">Gói Cửa Hàng</h4>
               <div className="mb-6">
                 <span className="text-4xl font-bold text-gray-800">79K</span>
                 <span className="text-gray-600">/tháng</span>
@@ -231,13 +244,19 @@ export default function AboutPage() {
                   <svg className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
-                  <span className="text-gray-700">10 nhân viên</span>
+                  <span className="text-gray-700">Tối đa 9 nhân viên</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <svg className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                   <span className="text-gray-700">Tất cả tính năng</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <svg className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span className="text-gray-700">Sếp lịch AI</span>
                 </li>
               </ul>
               <button className="w-full bg-gray-200 text-gray-700 py-3 rounded-lg font-semibold">
@@ -252,9 +271,9 @@ export default function AboutPage() {
                   Phổ Biến Nhất
                 </span>
               </div>
-              <h4 className="text-xl font-bold text-gray-800 mb-2">Tiêu Chuẩn</h4>
+              <h4 className="text-xl font-bold text-gray-800 mb-2">Gói Doanh Nghiệp</h4>
               <div className="mb-6">
-                <span className="text-4xl font-bold text-blue-600">149K</span>
+                <span className="text-4xl font-bold text-blue-600">179K</span>
                 <span className="text-gray-600">/tháng</span>
               </div>
               <ul className="space-y-3 mb-8">
@@ -262,19 +281,25 @@ export default function AboutPage() {
                   <svg className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
-                  <span className="text-gray-700">1 cửa hàng</span>
+                  <span className="text-gray-700">Tối đa 3 chi nhánh</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <svg className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
-                  <span className="text-gray-700 font-semibold">30 nhân viên</span>
+                  <span className="text-gray-700 font-semibold">Tối đa 30 nhân viên</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <svg className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                   <span className="text-gray-700">Tất cả tính năng</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <svg className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span className="text-gray-700">Sếp lịch AI</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <svg className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -290,9 +315,9 @@ export default function AboutPage() {
 
             {/* Enterprise */}
             <div className="bg-white rounded-2xl shadow-lg p-8 border-2 border-gray-200">
-              <h4 className="text-xl font-bold text-gray-800 mb-2">Nhiều Chi Nhánh</h4>
+              <h4 className="text-xl font-bold text-gray-800 mb-2">Gói Chuỗi Hệ Thống</h4>
               <div className="mb-6">
-                <span className="text-4xl font-bold text-gray-800">249K</span>
+                <span className="text-4xl font-bold text-gray-800">279K</span>
                 <span className="text-gray-600">/tháng</span>
               </div>
               <ul className="space-y-3 mb-8">
@@ -300,19 +325,25 @@ export default function AboutPage() {
                   <svg className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
-                  <span className="text-gray-700 font-semibold">3 cửa hàng</span>
+                  <span className="text-gray-700 font-semibold">KHÔNG GIỚI HẠN chi nhánh</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <svg className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
-                  <span className="text-gray-700">50 nhân viên</span>
+                  <span className="text-gray-700 font-semibold">KHÔNG GIỚI HẠN nhân viên</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <svg className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                   <span className="text-gray-700">Tất cả tính năng</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <svg className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span className="text-gray-700">Sếp lịch AI</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <svg className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -353,6 +384,7 @@ export default function AboutPage() {
           </p>
         </div>
       </div>
-    </main>
+      </main>
+    </MarketingLayout>
   );
 }

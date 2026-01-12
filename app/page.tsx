@@ -1,15 +1,14 @@
 'use client';
 
 import Link from 'next/link';
-import MarketingHeader from '@/components/MarketingHeader';
+import MarketingLayout from '@/components/MarketingLayout';
 import FeatureContent from '@/components/FeatureContent';
 
 export default function Home() {
   const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
 
   return (
-    <div className="min-h-screen">
-      <MarketingHeader />
+    <MarketingLayout>
 
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-700 text-white overflow-hidden">
@@ -30,7 +29,7 @@ export default function Home() {
                 href={`${appUrl}/auth/signup`}
                 className="inline-flex items-center justify-center px-8 py-4 bg-white text-blue-600 rounded-xl font-bold text-lg hover:shadow-2xl hover:scale-105 transition-all"
               >
-                Dùng Thử Miễn Phí 14 Ngày
+                Dùng Thử Miễn Phí 7 Ngày
                 <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                 </svg>
@@ -89,40 +88,6 @@ export default function Home() {
           </a>
         </div>
       </section>
-
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-4 gap-8">
-            <div>
-              <h3 className="font-bold text-lg mb-4">DiemDanh.net</h3>
-              <p className="text-gray-400 text-sm">
-                Hệ thống điểm danh và quản lý lịch làm việc thông minh cho doanh nghiệp
-              </p>
-            </div>
-            <div>
-              <h3 className="font-bold text-lg mb-4">Sản Phẩm</h3>
-              <ul className="space-y-2 text-sm">
-                <li><Link href="/pricing" className="text-gray-400 hover:text-white">Bảng Giá</Link></li>
-                <li><Link href="/help" className="text-gray-400 hover:text-white">Trợ Giúp</Link></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="font-bold text-lg mb-4">Công Ty</h3>
-              <ul className="space-y-2 text-sm">
-                <li><Link href="/about" className="text-gray-400 hover:text-white">Giới Thiệu</Link></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="font-bold text-lg mb-4">Liên Hệ</h3>
-              <p className="text-gray-400 text-sm">support@diemdanh.net</p>
-            </div>
-          </div>
-          <div className="border-t border-gray-800 mt-8 pt-8 text-center text-sm text-gray-400">
-            <p>&copy; {new Date().getFullYear()} DiemDanh.net. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
-    </div>
+    </MarketingLayout>
   );
 }

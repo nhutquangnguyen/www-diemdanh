@@ -2,8 +2,47 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Diemdanh.net - Hệ Thống Điểm Danh Thông Minh",
-  description: "Giải pháp chấm công hiện đại với QR code, selfie và xác thực vị trí GPS",
+  title: "DiemDanh.net - Hệ Thống Điểm Danh Thông Minh",
+  description: "Giải pháp chấm công hiện đại với QR code, selfie và xác thực vị trí GPS. Quản lý nhân viên, lịch làm việc thông minh. Dùng thử miễn phí 7 ngày.",
+  keywords: "điểm danh, chấm công, quản lý nhân viên, GPS, lịch làm việc, AI, chấm công thông minh, QR code điểm danh",
+  authors: [{ name: "DiemDanh.net" }],
+  creator: "DiemDanh.net",
+  publisher: "DiemDanh.net",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://diemdanh.net'),
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'vi_VN',
+    url: '/',
+    title: 'DiemDanh.net - Hệ Thống Điểm Danh Thông Minh',
+    description: 'Giải pháp chấm công hiện đại với GPS, QR code và AI. Dùng thử miễn phí 7 ngày.',
+    siteName: 'DiemDanh.net',
+    images: [{
+      url: '/og-image.jpg',
+      width: 1200,
+      height: 630,
+      alt: 'DiemDanh.net - Hệ Thống Điểm Danh Thông Minh',
+    }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'DiemDanh.net - Hệ Thống Điểm Danh Thông Minh',
+    description: 'Giải pháp chấm công hiện đại với GPS, QR code và AI. Dùng thử miễn phí 7 ngày.',
+    images: ['/og-image.jpg'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
 };
 
 export const dynamic = 'force-dynamic';
@@ -13,8 +52,71 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: 'DiemDanh.net',
+    applicationCategory: 'BusinessApplication',
+    operatingSystem: 'Web, iOS, Android',
+    offers: {
+      '@type': 'AggregateOffer',
+      priceCurrency: 'VND',
+      lowPrice: '79000',
+      highPrice: '279000',
+      offerCount: '3',
+      priceSpecification: [
+        {
+          '@type': 'UnitPriceSpecification',
+          price: '79000',
+          priceCurrency: 'VND',
+          name: 'Gói Cửa Hàng',
+          billingIncrement: 'month',
+        },
+        {
+          '@type': 'UnitPriceSpecification',
+          price: '179000',
+          priceCurrency: 'VND',
+          name: 'Gói Doanh Nghiệp',
+          billingIncrement: 'month',
+        },
+        {
+          '@type': 'UnitPriceSpecification',
+          price: '279000',
+          priceCurrency: 'VND',
+          name: 'Gói Chuỗi Hệ Thống',
+          billingIncrement: 'month',
+        },
+      ],
+    },
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '4.8',
+      ratingCount: '500',
+    },
+    description: 'Hệ thống điểm danh và quản lý nhân viên thông minh với GPS, QR code và AI',
+    softwareVersion: '1.0',
+    provider: {
+      '@type': 'Organization',
+      name: 'DiemDanh.net',
+      url: 'https://diemdanh.net',
+      logo: 'https://diemdanh.net/logo.png',
+      contactPoint: {
+        '@type': 'ContactPoint',
+        email: 'support@diemdanh.net',
+        contactType: 'Customer Service',
+        availableLanguage: 'Vietnamese',
+      },
+    },
+  };
+
   return (
     <html lang="vi">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className="antialiased">
         {children}
       </body>

@@ -627,7 +627,7 @@ export default function DiemDanhPage() {
             Bắt Đầu Điểm Danh Ngay Hôm Nay
           </h2>
           <p className="text-xl text-green-100 mb-8 max-w-2xl mx-auto">
-            Dùng thử miễn phí 14 ngày - Không cần thẻ tín dụng
+            Dùng thử miễn phí 7 ngày - Không cần thẻ tín dụng
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a

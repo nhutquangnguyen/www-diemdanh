@@ -2,14 +2,55 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import Header from '@/components/Header';
+import MarketingLayout from '@/components/MarketingLayout';
+import type { Metadata } from "next";
+
+// Note: Metadata export moved to parent layout since this is a client component
+// SEO handled via layout.tsx and structured data
 
 export default function PricingPage() {
   const [isYearly, setIsYearly] = useState(false);
 
+  // FAQ Structured Data
+  const faqJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'Tôi có phải thanh toán ngay không?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Không! Bạn được dùng thử miễn phí 7 ngày đầu với đầy đủ tính năng. Sau đó mới cần thanh toán nếu muốn tiếp tục sử dụng.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Có giảm giá nếu trả theo năm không?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Có! Thanh toán theo năm sẽ được giảm ngay 20% so với thanh toán theo tháng.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Tôi có thể hủy bất cứ lúc nào không?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Có! Không có ràng buộc dài hạn. Bạn có thể hủy bất cứ lúc nào.',
+        },
+      },
+    ],
+  };
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
-      <Header />
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
+      <MarketingLayout>
+        <div className="bg-gradient-to-br from-blue-50 to-indigo-100">
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Hero Section */}
@@ -536,6 +577,8 @@ export default function PricingPage() {
           </p>
         </div>
       </main>
-    </div>
+        </div>
+    </MarketingLayout>
+    </>
   );
 }

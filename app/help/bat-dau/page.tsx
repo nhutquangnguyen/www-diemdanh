@@ -648,7 +648,7 @@ export default function BatDauPage() {
               </summary>
               <div className="px-6 py-4 bg-gray-50 border-t border-gray-200">
                 <p className="text-gray-700">
-                  Có! Bạn được dùng thử MIỄN PHÍ 14 ngày với đầy đủ tính năng, không cần thẻ tín dụng. Sau 14 ngày, chọn gói phù hợp để tiếp tục sử dụng.
+                  Có! Bạn được dùng thử MIỄN PHÍ 7 ngày với đầy đủ tính năng, không cần thẻ tín dụng. Sau 7 ngày, chọn gói phù hợp để tiếp tục sử dụng.
                 </p>
               </div>
             </details>
@@ -662,7 +662,7 @@ export default function BatDauPage() {
               </summary>
               <div className="px-6 py-4 bg-gray-50 border-t border-gray-200">
                 <p className="text-gray-700">
-                  Tùy thuộc vào gói dịch vụ bạn chọn. Gói Cơ Bản: 10 nhân viên, Gói Chuyên Nghiệp: 50 nhân viên, Gói Doanh Nghiệp: Không giới hạn.
+                  Tùy thuộc vào gói dịch vụ bạn chọn. Gói Cửa Hàng: 9 nhân viên, Gói Doanh Nghiệp: 30 nhân viên, Gói Chuỗi Hệ Thống: Không giới hạn.
                 </p>
               </div>
             </details>
@@ -719,7 +719,7 @@ export default function BatDauPage() {
             Sẵn Sàng Bắt Đầu?
           </h2>
           <p className="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
-            Dùng thử miễn phí 14 ngày - Không cần thẻ tín dụng
+            Dùng thử miễn phí 7 ngày - Không cần thẻ tín dụng
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a

@@ -16,31 +16,9 @@ export default function HelpIndexPage() {
             <h1 className="text-3xl sm:text-4xl font-bold mb-4">
               Trung Tâm Trợ Giúp
             </h1>
-            <p className="text-lg sm:text-xl text-blue-100 mb-8">
+            <p className="text-lg sm:text-xl text-blue-100">
               Tìm câu trả lời và hướng dẫn chi tiết để sử dụng DiemDanh hiệu quả
             </p>
-
-            {/* Search Box */}
-            <div className="relative max-w-2xl mx-auto">
-              <input
-                type="text"
-                placeholder="Tìm kiếm hướng dẫn..."
-                className="w-full px-6 py-4 rounded-xl text-gray-900 text-lg focus:outline-none focus:ring-4 focus:ring-blue-300 shadow-lg"
-              />
-              <svg
-                className="absolute right-6 top-1/2 transform -translate-y-1/2 w-6 h-6 text-gray-400"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                />
-              </svg>
-            </div>
           </div>
         </div>
       </div>
