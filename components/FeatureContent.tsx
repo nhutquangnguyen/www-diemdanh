@@ -156,7 +156,7 @@ export default function FeatureContent() {
                 </ul>
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Link
-                    href="/sep-lich-ai"
+                    href="/help/sep-lich-ai"
                     className="inline-block bg-white hover:bg-gray-100 text-purple-600 px-8 py-4 rounded-lg font-bold text-lg transition-all shadow-lg text-center"
                   >
                     Tìm hiểu thêm
