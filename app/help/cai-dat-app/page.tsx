@@ -132,7 +132,7 @@ export default function CaiDatAppPage() {
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="text-blue-600 font-bold">→</span>
-                      Truy cập: <code className="bg-gray-100 px-3 py-1 rounded text-blue-700 font-mono">diemdanh.net</code>
+                      Truy cập: <code className="bg-gray-100 px-3 py-1 rounded text-blue-700 font-mono">app.diemdanh.net</code>
                     </li>
                     <li className="flex items-start gap-2">
                       <span className="text-blue-600 font-bold">→</span>
@@ -223,7 +223,7 @@ export default function CaiDatAppPage() {
                 <li className="flex items-start gap-3">
                   <span className="flex-shrink-0 w-8 h-8 bg-green-600 text-white rounded-full flex items-center justify-center font-bold">2</span>
                   <div>
-                    Truy cập: <code className="bg-gray-100 px-3 py-1 rounded text-blue-700 font-mono">diemdanh.net</code>
+                    Truy cập: <code className="bg-gray-100 px-3 py-1 rounded text-blue-700 font-mono">app.diemdanh.net</code>
                   </div>
                 </li>
                 <li className="flex items-start gap-3">
@@ -294,7 +294,7 @@ export default function CaiDatAppPage() {
                 <span className="flex-shrink-0 w-10 h-10 bg-purple-600 text-white rounded-full flex items-center justify-center font-bold">1</span>
                 <div className="flex-1">
                   <strong className="text-xl text-gray-900">Mở Chrome</strong>
-                  <p className="text-gray-600 mt-1">Truy cập: <code className="bg-gray-100 px-3 py-1 rounded text-blue-700 font-mono">diemdanh.net</code></p>
+                  <p className="text-gray-600 mt-1">Truy cập: <code className="bg-gray-100 px-3 py-1 rounded text-blue-700 font-mono">app.diemdanh.net</code></p>
                 </div>
               </li>
               <li className="flex items-start gap-3">
