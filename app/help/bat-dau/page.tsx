@@ -61,7 +61,7 @@ export default function BatDauPage() {
 
             <div className="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-2xl p-6 border-2 border-indigo-200">
               <div className="text-4xl mb-4">🤖</div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">Sếp Lịch AI</h3>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">Xếp lịch AI</h3>
               <p className="text-gray-700">
                 Tự động sắp xếp ca làm việc thông minh dựa trên AI
               </p>
@@ -462,13 +462,13 @@ export default function BatDauPage() {
                         <div className="bg-white rounded-lg p-4 border-2 border-green-200">
                           <div className="flex items-center gap-3 mb-2">
                             <span className="text-2xl">🤖</span>
-                            <p className="font-bold text-gray-900">Cách 1: Dùng Sếp Lịch AI (Khuyến nghị)</p>
+                            <p className="font-bold text-gray-900">Cách 1: Dùng Xếp lịch AI (Khuyến nghị)</p>
                           </div>
                           <p className="text-sm text-gray-600 ml-11">
                             AI tự động sắp xếp ca công bằng, tối ưu cho tất cả nhân viên
                           </p>
                           <button className="ml-11 mt-3 px-4 py-2 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-lg font-semibold hover:shadow-lg transition-all">
-                            Xem hướng dẫn Sếp Lịch AI →
+                            Xem hướng dẫn Xếp lịch AI →
                           </button>
                         </div>
                         <div className="bg-white rounded-lg p-4 border-2 border-gray-200">
@@ -616,7 +616,7 @@ export default function BatDauPage() {
             >
               <div className="text-5xl mb-4">🤖</div>
               <h3 className="text-2xl font-bold text-gray-900 mb-3 group-hover:text-purple-600 transition-colors">
-                Sếp Lịch AI
+                Xếp lịch AI
               </h3>
               <p className="text-gray-700 mb-4">
                 Để AI tự động sắp xếp lịch làm việc công bằng và tối ưu cho toàn bộ nhân viên

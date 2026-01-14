@@ -29,7 +29,7 @@ export const helpArticles: HelpArticle[] = [
   },
   {
     slug: 'sep-lich-ai',
-    title: 'Sử Dụng Sếp Lịch AI',
+    title: 'Sử Dụng Xếp lịch AI',
     description: 'Tự động xếp lịch thông minh với AI - tiết kiệm thời gian và công bằng',
     category: 'features',
     icon: '⚡',

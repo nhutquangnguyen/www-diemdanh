@@ -129,7 +129,7 @@ export default function FeatureContent() {
                   ✨ MỚI: Tính năng AI
                 </div>
                 <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-                  Sếp lịch AI 🤖
+                  Xếp lịch AI 🤖
                 </h2>
                 <p className="text-xl text-blue-100 mb-6">
                   Xếp lịch làm việc tự động, công bằng và thông minh chỉ trong vài giây

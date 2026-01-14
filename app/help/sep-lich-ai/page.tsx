@@ -12,7 +12,7 @@ export default function SepLichAIPage() {
           <div className="max-w-3xl mx-auto text-center">
             <div className="text-5xl mb-4">🤖</div>
             <h1 className="text-3xl md:text-4xl font-bold mb-3">
-              Sếp Lịch AI
+              Xếp lịch AI
             </h1>
             <p className="text-lg md:text-xl text-purple-100">
               AI tự động sắp xếp lịch công bằng, tối ưu cho toàn bộ nhân viên
@@ -87,7 +87,7 @@ export default function SepLichAIPage() {
                 <div className="flex-1">
                   <h3 className="text-lg font-bold text-gray-900 mb-2">Nhập Số Lượng Nhân Viên Cần</h3>
                   <p className="text-sm text-gray-600 mb-2">
-                    Menu <strong>"Mở rộng"</strong> → <strong>"Sếp lịch AI"</strong> → Nhập số người cần cho mỗi ca (Ca sáng, Ca trưa, Ca tối)
+                    Menu <strong>"Mở rộng"</strong> → <strong>"Xếp lịch AI"</strong> → Nhập số người cần cho mỗi ca (Ca sáng, Ca trưa, Ca tối)
                   </p>
                   <p className="text-xs text-gray-500">💡 Có nút "Áp dụng cho tất cả" để nhanh hơn</p>
                 </div>
@@ -155,7 +155,7 @@ export default function SepLichAIPage() {
 
             <details className="bg-gray-50 rounded-lg overflow-hidden">
               <summary className="px-5 py-3 cursor-pointer font-semibold text-gray-900 hover:bg-gray-100">
-                AI có tính phí không?
+                Xếp lịch AI có tính phí không?
               </summary>
               <div className="px-5 py-3 bg-white text-sm text-gray-700">
                 <strong>Miễn phí</strong> cho gói Chuyên Nghiệp. Gói Cơ Bản có giới hạn 5 lần/tháng.
@@ -170,7 +170,7 @@ export default function SepLichAIPage() {
         <div className="container mx-auto px-4 text-center">
           <div className="text-5xl mb-4">🤖</div>
           <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4">
-            Trải Nghiệm Sếp Lịch AI Ngay
+            Trải Nghiệm Xếp lịch AI Ngay
           </h2>
           <p className="text-lg text-purple-100 mb-6">
             Tiết kiệm 95% thời gian. Công bằng 100%

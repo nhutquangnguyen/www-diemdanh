@@ -28,7 +28,7 @@ export default function MarketingHeader() {
               Bảng Giá
             </Link>
             <Link href="/help/sep-lich-ai" className="px-4 py-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all font-medium flex items-center gap-1">
-              <span>Sếp Lịch AI</span>
+              <span>Xếp lịch AI</span>
               <span className="text-xs bg-gradient-to-r from-purple-500 to-pink-500 text-white px-2 py-0.5 rounded-full font-semibold">NEW</span>
             </Link>
             <Link href="/help" className="px-4 py-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all font-medium">
@@ -80,7 +80,7 @@ export default function MarketingHeader() {
                 className="text-gray-700 hover:text-blue-600 hover:bg-blue-50 font-medium py-3 px-4 rounded-lg transition-all flex items-center justify-between"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                <span>Sếp Lịch AI</span>
+                <span>Xếp lịch AI</span>
                 <span className="text-xs bg-gradient-to-r from-purple-500 to-pink-500 text-white px-2 py-0.5 rounded-full font-semibold">NEW</span>
               </Link>
               <Link
