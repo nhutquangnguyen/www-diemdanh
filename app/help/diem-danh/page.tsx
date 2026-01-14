@@ -62,7 +62,7 @@ export default function DiemDanhPage() {
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">Mở App</h3>
               <p className="text-gray-600">
-                Mở DiemDanh.net trên điện thoại khi đến nơi làm việc
+                Mở diemdanh.net trên điện thoại khi đến nơi làm việc
               </p>
             </div>
 

@@ -3,11 +3,11 @@ import MarketingLayout from '@/components/MarketingLayout';
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Giới Thiệu - DiemDanh.net | Hệ Thống Điểm Danh Thông Minh",
-  description: "Tìm hiểu về DiemDanh.net - giải pháp chấm công thông minh với GPS, QR code và AI. Tiết kiệm chi phí, quản lý nhân viên hiệu quả. Dùng thử miễn phí 7 ngày.",
+  title: "Giới Thiệu - diemdanh.net | Hệ Thống Điểm Danh Thông Minh",
+  description: "Tìm hiểu về diemdanh.net - giải pháp chấm công thông minh với GPS, QR code và AI. Tiết kiệm chi phí, quản lý nhân viên hiệu quả. Dùng thử miễn phí 7 ngày.",
   keywords: "giới thiệu diemdanh, về chúng tôi, hệ thống điểm danh, chấm công GPS, quản lý nhân viên",
   openGraph: {
-    title: 'Giới Thiệu - DiemDanh.net',
+    title: 'Giới Thiệu - diemdanh.net',
     description: 'Hệ thống chấm công cho thời đại số. Chính xác, nhanh chóng và tiết kiệm.',
     url: '/about',
     type: 'website',

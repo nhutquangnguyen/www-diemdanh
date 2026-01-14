@@ -17,7 +17,7 @@ export default function MarketingHeader() {
               <span className="text-white font-bold text-xl">D</span>
             </div>
             <div className="flex flex-col">
-              <span className="font-bold text-xl text-gray-900 leading-tight">DiemDanh.net</span>
+              <span className="font-bold text-xl text-gray-900 leading-tight">diemdanh.net</span>
               <span className="text-xs text-gray-500 leading-tight">Chấm công thông minh</span>
             </div>
           </Link>

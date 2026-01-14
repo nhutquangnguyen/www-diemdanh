@@ -14,7 +14,7 @@ export default function BatDauPage() {
           <div className="max-w-4xl mx-auto text-center">
             <div className="text-6xl mb-6 animate-bounce">🚀</div>
             <h1 className="text-4xl sm:text-5xl font-bold mb-6">
-              Bắt Đầu Với DiemDanh.net
+              Bắt Đầu Với diemdanh.net
             </h1>
             <p className="text-xl text-blue-100 mb-8">
               Hướng dẫn đầy đủ từ A-Z để bạn bắt đầu sử dụng hệ thống điểm danh thông minh trong 5 phút
@@ -43,7 +43,7 @@ export default function BatDauPage() {
         <div className="container mx-auto px-4 max-w-6xl">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              DiemDanh.net Là Gì?
+              diemdanh.net Là Gì?
             </h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
               Hệ thống quản lý điểm danh và lịch làm việc thông minh, giúp doanh nghiệp theo dõi nhân viên hiệu quả
@@ -704,7 +704,7 @@ export default function BatDauPage() {
               </summary>
               <div className="px-6 py-4 bg-gray-50 border-t border-gray-200">
                 <p className="text-gray-700">
-                  DiemDanh.net là PWA - chạy ngay trên trình duyệt. Nhân viên có thể cài đặt nhanh như app thật mà không cần tải từ App Store/CH Play. <a href="/help/cai-dat-app" className="text-blue-600 font-semibold hover:underline">Xem hướng dẫn →</a>
+                  diemdanh.net là PWA - chạy ngay trên trình duyệt. Nhân viên có thể cài đặt nhanh như app thật mà không cần tải từ App Store/CH Play. <a href="/help/cai-dat-app" className="text-blue-600 font-semibold hover:underline">Xem hướng dẫn →</a>
                 </p>
               </div>
             </details>

@@ -2,12 +2,12 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "DiemDanh.net - Hệ Thống Điểm Danh Thông Minh",
+  title: "diemdanh.net - Hệ Thống Điểm Danh Thông Minh",
   description: "Giải pháp chấm công hiện đại với QR code, selfie và xác thực vị trí GPS. Quản lý nhân viên, lịch làm việc thông minh. Dùng thử miễn phí 7 ngày.",
   keywords: "điểm danh, chấm công, quản lý nhân viên, GPS, lịch làm việc, AI, chấm công thông minh, QR code điểm danh",
-  authors: [{ name: "DiemDanh.net" }],
-  creator: "DiemDanh.net",
-  publisher: "DiemDanh.net",
+  authors: [{ name: "diemdanh.net" }],
+  creator: "diemdanh.net",
+  publisher: "diemdanh.net",
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://diemdanh.net'),
   alternates: {
     canonical: '/',
@@ -16,19 +16,19 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'vi_VN',
     url: '/',
-    title: 'DiemDanh.net - Hệ Thống Điểm Danh Thông Minh',
+    title: 'diemdanh.net - Hệ Thống Điểm Danh Thông Minh',
     description: 'Giải pháp chấm công hiện đại với GPS, QR code và AI. Dùng thử miễn phí 7 ngày.',
-    siteName: 'DiemDanh.net',
+    siteName: 'diemdanh.net',
     images: [{
       url: '/og-image.jpg',
       width: 1200,
       height: 630,
-      alt: 'DiemDanh.net - Hệ Thống Điểm Danh Thông Minh',
+      alt: 'diemdanh.net - Hệ Thống Điểm Danh Thông Minh',
     }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'DiemDanh.net - Hệ Thống Điểm Danh Thông Minh',
+    title: 'diemdanh.net - Hệ Thống Điểm Danh Thông Minh',
     description: 'Giải pháp chấm công hiện đại với GPS, QR code và AI. Dùng thử miễn phí 7 ngày.',
     images: ['/og-image.jpg'],
   },
@@ -55,7 +55,7 @@ export default function RootLayout({
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'SoftwareApplication',
-    name: 'DiemDanh.net',
+    name: 'diemdanh.net',
     applicationCategory: 'BusinessApplication',
     operatingSystem: 'Web, iOS, Android',
     offers: {
@@ -97,7 +97,7 @@ export default function RootLayout({
     softwareVersion: '1.0',
     provider: {
       '@type': 'Organization',
-      name: 'DiemDanh.net',
+      name: 'diemdanh.net',
       url: 'https://diemdanh.net',
       logo: 'https://diemdanh.net/logo.png',
       contactPoint: {

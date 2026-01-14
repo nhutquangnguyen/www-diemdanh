@@ -23,7 +23,7 @@ export default function HelpLayout({ children }: HelpLayoutProps) {
           <div className="grid md:grid-cols-4 gap-8">
             {/* About */}
             <div>
-              <h3 className="font-bold text-lg mb-4">DiemDanh.net</h3>
+              <h3 className="font-bold text-lg mb-4">diemdanh.net</h3>
               <p className="text-gray-400 text-sm">
                 Hệ thống điểm danh và quản lý lịch làm việc thông minh cho doanh nghiệp
               </p>
@@ -116,7 +116,7 @@ export default function HelpLayout({ children }: HelpLayoutProps) {
           </div>
 
           <div className="border-t border-gray-700 mt-8 pt-8 text-center text-sm text-gray-400">
-            <p>&copy; {new Date().getFullYear()} DiemDanh.net. All rights reserved.</p>
+            <p>&copy; {new Date().getFullYear()} diemdanh.net. All rights reserved.</p>
           </div>
         </div>
       </footer>
