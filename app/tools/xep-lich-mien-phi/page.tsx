@@ -468,7 +468,7 @@ export default function FreeScheduleTool() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
+    <div className="min-h-screen bg-gray-50 flex flex-col overflow-x-hidden">
       {/* Header */}
       <header className="bg-white/95 backdrop-blur-sm border-b border-gray-100 sticky top-0 z-50 shadow-sm">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -516,11 +516,11 @@ export default function FreeScheduleTool() {
       {/* Main Content */}
       <main className="flex-1">
         {/* Hero Header */}
-        <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-16 px-4">
+        <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-12 sm:py-16 px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl font-bold mb-3">Xếp Lịch AI Miễn Phí</h1>
-            <p className="text-xl text-blue-100 mb-6">Tạo lịch làm việc công bằng trong 5 phút - Không cần đăng ký</p>
-            <div className="flex flex-wrap justify-center gap-4 text-sm">
+            <h1 className="text-3xl sm:text-4xl font-bold mb-3">Xếp Lịch AI Miễn Phí</h1>
+            <p className="text-lg sm:text-xl text-blue-100 mb-6">Tạo lịch làm việc công bằng trong 5 phút - Không cần đăng ký</p>
+            <div className="flex flex-wrap justify-center gap-3 sm:gap-4 text-sm">
               <div className="flex items-center gap-2">
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
@@ -545,17 +545,17 @@ export default function FreeScheduleTool() {
 
       <div className="max-w-4xl mx-auto px-4 py-8">
         {/* Progress bar */}
-        <div className="bg-white rounded-lg shadow-md p-6 mb-6">
+        <div className="bg-white rounded-lg shadow-md p-4 sm:p-6 mb-6">
           <div className="flex items-center justify-between mb-4">
             {[1, 2, 3, 4, 5].map((s) => (
-              <div key={s} className="flex items-center">
-                <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold ${
+              <div key={s} className="flex items-center flex-1 last:flex-none">
+                <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center font-bold text-sm sm:text-base shrink-0 ${
                   step >= s ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-500'
                 }`}>
                   {s}
                 </div>
                 {s < 5 && (
-                  <div className={`w-12 sm:w-20 h-1 mx-1 ${
+                  <div className={`flex-1 h-1 mx-1 sm:mx-2 min-w-[20px] ${
                     step > s ? 'bg-blue-600' : 'bg-gray-200'
                   }`} />
                 )}
