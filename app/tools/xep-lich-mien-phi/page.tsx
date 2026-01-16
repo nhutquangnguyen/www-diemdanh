@@ -441,7 +441,7 @@ export default function FreeScheduleTool() {
 
       const data = await response.json();
       setShareModal({
-        url: data.url,
+        url: data.url.trim(), // Remove any whitespace
         qrCode: data.qrCode,
         expiresAt: data.expiresAt
       });
@@ -454,7 +454,9 @@ export default function FreeScheduleTool() {
   }
 
   function copyToClipboard(text: string) {
-    navigator.clipboard.writeText(text).then(() => {
+    // Trim whitespace and newlines to prevent copy issues
+    const cleanText = text.trim();
+    navigator.clipboard.writeText(cleanText).then(() => {
       alert('Đã sao chép link!');
     }).catch(() => {
       alert('Không thể sao chép. Vui lòng sao chép thủ công.');
