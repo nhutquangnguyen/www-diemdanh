@@ -8,7 +8,7 @@ import type {
   SmartScheduleResult,
   ShiftTemplate
 } from '@/types';
-import * as XLSX from 'xlsx';
+import ExcelJS from 'exceljs';
 
 // Simple staff interface for free tool (no database)
 interface FreeToolStaff {
@@ -471,129 +471,132 @@ export default function FreeScheduleTool() {
     return Math.ceil(diff / (1000 * 60 * 60 * 24));
   }
 
-  function exportToExcel() {
+  async function exportToExcel() {
     if (!generatedSchedule) return;
 
     const dayNames = ['T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'CN'];
 
-    // Helper function to convert hex color to RGB
-    const hexToRgb = (hex: string) => {
-      const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-      return result ? {
-        r: parseInt(result[1], 16),
-        g: parseInt(result[2], 16),
-        b: parseInt(result[3], 16)
-      } : { r: 255, g: 255, b: 255 };
-    };
+    // Create workbook and worksheet
+    const workbook = new ExcelJS.Workbook();
+    const worksheet = workbook.addWorksheet('Lịch Làm Việc');
 
-    // Prepare data for Excel
-    const excelData: any[][] = [];
+    // Add header row
+    const headerRow = worksheet.addRow(['Ngày', ...staff.map(s => s.display_name)]);
 
-    // Header row with staff names
-    const headerRow = ['Ngày', ...staff.map(s => s.display_name)];
-    excelData.push(headerRow);
+    // Style header row
+    headerRow.eachCell((cell) => {
+      cell.fill = {
+        type: 'pattern',
+        pattern: 'solid',
+        fgColor: { argb: 'FF2563EB' } // Blue
+      };
+      cell.font = {
+        bold: true,
+        color: { argb: 'FFFFFFFF' } // White
+      };
+      cell.alignment = {
+        vertical: 'middle',
+        horizontal: 'center'
+      };
+    });
 
-    // Data rows - one for each day
+    // Add data rows
     weekDates.forEach((date, dayIndex) => {
-      const row: any[] = [];
-
-      // Date column
       const dateObj = new Date(date);
       const dayLabel = `${dayNames[dayIndex]} ${dateObj.getDate()}/${dateObj.getMonth() + 1}`;
-      row.push(dayLabel);
 
-      // Staff columns - show shift names
+      const rowData = [dayLabel];
+
+      // Add staff shift data
       staff.forEach((staffMember) => {
         const shiftIds = generatedSchedule.assignments[staffMember.id]?.[date] || [];
         const assignedShifts = shiftIds.map(id => shifts.find(s => s.id === id)).filter(Boolean) as ShiftTemplate[];
 
         if (assignedShifts.length > 0) {
           const shiftNames = assignedShifts.map(s => `${s.name} (${s.start_time.substring(0, 5)}-${s.end_time.substring(0, 5)})`).join(', ');
-          row.push(shiftNames);
+          rowData.push(shiftNames);
         } else {
-          row.push('OFF');
+          rowData.push('OFF');
         }
       });
 
-      excelData.push(row);
-    });
+      const row = worksheet.addRow(rowData);
 
-    // Create workbook and worksheet
-    const wb = XLSX.utils.book_new();
-    const ws = XLSX.utils.aoa_to_sheet(excelData);
-
-    // Set column widths
-    const colWidths = [{ wch: 15 }, ...staff.map(() => ({ wch: 25 }))];
-    ws['!cols'] = colWidths;
-
-    // Apply styles to cells
-    const range = XLSX.utils.decode_range(ws['!ref'] || 'A1');
-
-    for (let R = range.s.r; R <= range.e.r; ++R) {
-      for (let C = range.s.c; C <= range.e.c; ++C) {
-        const cellAddress = XLSX.utils.encode_cell({ r: R, c: C });
-        if (!ws[cellAddress]) continue;
-
-        // Header row styling
-        if (R === 0) {
-          ws[cellAddress].s = {
-            fill: { fgColor: { rgb: "2563EB" } }, // Blue
-            font: { bold: true, color: { rgb: "FFFFFF" } },
-            alignment: { horizontal: "center", vertical: "center" }
+      // Style cells
+      row.eachCell((cell, colNumber) => {
+        // Date column
+        if (colNumber === 1) {
+          cell.fill = {
+            type: 'pattern',
+            pattern: 'solid',
+            fgColor: { argb: 'FFF3F4F6' } // Light gray
           };
-        }
-        // Date column styling
-        else if (C === 0) {
-          ws[cellAddress].s = {
-            fill: { fgColor: { rgb: "F3F4F6" } }, // Light gray
-            font: { bold: true },
-            alignment: { horizontal: "left", vertical: "center" }
-          };
-        }
-        // Data cells with shift colors
-        else {
-          const cellValue = ws[cellAddress].v;
-          const dayIndex = R - 1;
-          const staffIndex = C - 1;
-          const date = weekDates[dayIndex];
+          cell.font = { bold: true };
+          cell.alignment = { vertical: 'middle', horizontal: 'left' };
+        } else {
+          // Staff shift cells
+          const staffIndex = colNumber - 2;
           const staffMember = staff[staffIndex];
+          const shiftIds = generatedSchedule.assignments[staffMember.id]?.[date] || [];
+          const assignedShifts = shiftIds.map(id => shifts.find(s => s.id === id)).filter(Boolean) as ShiftTemplate[];
 
-          if (staffMember && date) {
-            const shiftIds = generatedSchedule.assignments[staffMember.id]?.[date] || [];
-            const assignedShifts = shiftIds.map(id => shifts.find(s => s.id === id)).filter(Boolean) as ShiftTemplate[];
-
-            if (assignedShifts.length > 0) {
-              // Use first shift's color
-              const shiftColor = assignedShifts[0].color;
-              const rgb = hexToRgb(shiftColor);
-              ws[cellAddress].s = {
-                fill: { fgColor: { rgb: `${rgb.r.toString(16).padStart(2, '0')}${rgb.g.toString(16).padStart(2, '0')}${rgb.b.toString(16).padStart(2, '0')}`.toUpperCase() } },
-                font: { color: { rgb: "FFFFFF" }, bold: true },
-                alignment: { horizontal: "center", vertical: "center", wrapText: true }
-              };
-            } else if (cellValue === 'OFF') {
-              // OFF styling - light red background
-              ws[cellAddress].s = {
-                fill: { fgColor: { rgb: "FEE2E2" } },
-                font: { color: { rgb: "DC2626" }, bold: true },
-                alignment: { horizontal: "center", vertical: "center" }
-              };
-            }
+          if (assignedShifts.length > 0) {
+            // Use shift color
+            const shiftColor = assignedShifts[0].color.replace('#', '');
+            cell.fill = {
+              type: 'pattern',
+              pattern: 'solid',
+              fgColor: { argb: 'FF' + shiftColor }
+            };
+            cell.font = {
+              bold: true,
+              color: { argb: 'FFFFFFFF' } // White text
+            };
+            cell.alignment = {
+              vertical: 'middle',
+              horizontal: 'center',
+              wrapText: true
+            };
+          } else {
+            // OFF cell
+            cell.fill = {
+              type: 'pattern',
+              pattern: 'solid',
+              fgColor: { argb: 'FFFEE2E2' } // Light red
+            };
+            cell.font = {
+              bold: true,
+              color: { argb: 'FFDC2626' } // Red text
+            };
+            cell.alignment = {
+              vertical: 'middle',
+              horizontal: 'center'
+            };
           }
         }
-      }
-    }
+      });
+    });
 
-    // Add worksheet to workbook
-    XLSX.utils.book_append_sheet(wb, ws, 'Lịch Làm Việc');
+    // Set column widths
+    worksheet.getColumn(1).width = 15;
+    staff.forEach((_, index) => {
+      worksheet.getColumn(index + 2).width = 25;
+    });
 
-    // Generate filename with date range
+    // Generate filename
     const startDate = new Date(weekDates[0]);
     const endDate = new Date(weekDates[6]);
     const filename = `Lich_Lam_Viec_${startDate.getDate()}-${startDate.getMonth() + 1}_den_${endDate.getDate()}-${endDate.getMonth() + 1}.xlsx`;
 
     // Download file
-    XLSX.writeFile(wb, filename, { bookType: 'xlsx', cellStyles: true });
+    const buffer = await workbook.xlsx.writeBuffer();
+    const blob = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+    const url = window.URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = filename;
+    link.click();
+    window.URL.revokeObjectURL(url);
   }
 
   return (
