@@ -8,6 +8,7 @@ import type {
   SmartScheduleResult,
   ShiftTemplate
 } from '@/types';
+import * as XLSX from 'xlsx';
 
 // Simple staff interface for free tool (no database)
 interface FreeToolStaff {
@@ -468,6 +469,63 @@ export default function FreeScheduleTool() {
     const now = new Date();
     const diff = expires.getTime() - now.getTime();
     return Math.ceil(diff / (1000 * 60 * 60 * 24));
+  }
+
+  function exportToExcel() {
+    if (!generatedSchedule) return;
+
+    const dayNames = ['T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'CN'];
+
+    // Prepare data for Excel
+    const excelData: any[][] = [];
+
+    // Header row with staff names
+    const headerRow = ['Ngày', ...staff.map(s => s.display_name)];
+    excelData.push(headerRow);
+
+    // Data rows - one for each day
+    weekDates.forEach((date, dayIndex) => {
+      const row: any[] = [];
+
+      // Date column
+      const dateObj = new Date(date);
+      const dayLabel = `${dayNames[dayIndex]} ${dateObj.getDate()}/${dateObj.getMonth() + 1}`;
+      row.push(dayLabel);
+
+      // Staff columns - show shift names
+      staff.forEach((staffMember) => {
+        const shiftIds = generatedSchedule.assignments[staffMember.id]?.[date] || [];
+        const assignedShifts = shiftIds.map(id => shifts.find(s => s.id === id)).filter(Boolean) as ShiftTemplate[];
+
+        if (assignedShifts.length > 0) {
+          const shiftNames = assignedShifts.map(s => `${s.name} (${s.start_time.substring(0, 5)}-${s.end_time.substring(0, 5)})`).join(', ');
+          row.push(shiftNames);
+        } else {
+          row.push('OFF');
+        }
+      });
+
+      excelData.push(row);
+    });
+
+    // Create workbook and worksheet
+    const wb = XLSX.utils.book_new();
+    const ws = XLSX.utils.aoa_to_sheet(excelData);
+
+    // Set column widths
+    const colWidths = [{ wch: 15 }, ...staff.map(() => ({ wch: 25 }))];
+    ws['!cols'] = colWidths;
+
+    // Add worksheet to workbook
+    XLSX.utils.book_append_sheet(wb, ws, 'Lịch Làm Việc');
+
+    // Generate filename with date range
+    const startDate = new Date(weekDates[0]);
+    const endDate = new Date(weekDates[6]);
+    const filename = `Lich_Lam_Viec_${startDate.getDate()}-${startDate.getMonth() + 1}_den_${endDate.getDate()}-${endDate.getMonth() + 1}.xlsx`;
+
+    // Download file
+    XLSX.writeFile(wb, filename);
   }
 
   return (
@@ -1123,7 +1181,7 @@ export default function FreeScheduleTool() {
                 <table className="w-full border-collapse">
                   <thead>
                     <tr className="border-b-2 border-gray-300">
-                      <th className="text-left p-3 text-gray-700 font-bold text-sm bg-blue-600 text-white">Ngày</th>
+                      <th className="sticky left-0 z-20 text-left p-3 text-gray-700 font-bold text-sm bg-blue-600 text-white shadow-[2px_0_5px_-2px_rgba(0,0,0,0.1)]">Ngày</th>
                       {staff.map((staffMember) => (
                         <th key={staffMember.id} className="p-3 text-center border-l border-gray-200 bg-blue-600 text-white min-w-[120px]">
                           <div className="font-semibold text-sm">{staffMember.display_name}</div>
@@ -1134,12 +1192,13 @@ export default function FreeScheduleTool() {
                   <tbody>
                     {weekDates.map((date, dayIndex) => {
                       const isToday = date === new Date().toISOString().split('T')[0];
+                      const bgColor = isToday ? 'bg-yellow-50' : dayIndex % 2 === 0 ? 'bg-white' : 'bg-gray-50';
                       return (
                         <tr
                           key={date}
-                          className={`border-b ${isToday ? 'bg-yellow-50' : dayIndex % 2 === 0 ? 'bg-white' : 'bg-gray-50'}`}
+                          className={`border-b ${bgColor}`}
                         >
-                          <td className="p-3 border-r-2 border-gray-300">
+                          <td className={`sticky left-0 z-10 p-3 border-r-2 border-gray-300 shadow-[2px_0_5px_-2px_rgba(0,0,0,0.1)] ${bgColor}`}>
                             <div className="font-semibold text-gray-800 text-sm">{dayNames[dayIndex]}</div>
                             <div className="text-xs text-gray-500">
                               {new Date(date).getDate()}/{new Date(date).getMonth() + 1}
@@ -1288,6 +1347,15 @@ export default function FreeScheduleTool() {
                 className="px-6 py-3 border-2 border-gray-300 text-gray-700 rounded-lg font-semibold hover:bg-gray-50"
               >
                 🔄 Tạo lịch mới
+              </button>
+              <button
+                onClick={exportToExcel}
+                className="px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg font-semibold transition-colors flex items-center justify-center gap-2"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                Tải Excel
               </button>
               <button
                 onClick={handleShare}

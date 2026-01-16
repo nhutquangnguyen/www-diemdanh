@@ -78,7 +78,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Generate share URL
-    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3001';
+    const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3001').trim();
     const shareUrl = `${siteUrl}/s/${shareId}`;
 
     // Generate QR code
