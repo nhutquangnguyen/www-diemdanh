@@ -961,7 +961,7 @@ export default function FreeScheduleTool() {
 
             {/* Bulk apply */}
             <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
-              <div className="text-sm font-semibold text-gray-700 mb-3">Áp dụng nhanh:</div>
+              <div className="text-sm font-semibold text-gray-700 mb-3">Áp dụng:</div>
               <div className="flex flex-wrap items-center gap-2">
                 <input
                   type="number"
@@ -969,7 +969,7 @@ export default function FreeScheduleTool() {
                   max="10"
                   defaultValue="1"
                   id="bulkApplyValue"
-                  className="w-20 px-3 py-2 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-center font-bold text-lg bg-white text-gray-900"
+                  className="w-14 px-2 py-2 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-center font-bold text-base bg-white text-gray-900"
                 />
                 <button
                   onClick={() => {
@@ -981,13 +981,13 @@ export default function FreeScheduleTool() {
                   }}
                   className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold text-sm transition-colors"
                 >
-                  Áp dụng cho tất cả
+                  Áp dụng
                 </button>
                 <button
                   onClick={() => bulkApplyRequirement(0)}
                   className="px-4 py-2 bg-gray-500 hover:bg-gray-600 text-white rounded-lg font-semibold text-sm transition-colors"
                 >
-                  Xóa tất cả
+                  Xóa
                 </button>
               </div>
             </div>
@@ -997,30 +997,35 @@ export default function FreeScheduleTool() {
               <table className="w-full border-collapse">
                 <thead>
                   <tr className="border-b-2 border-gray-300">
-                    <th className="text-left p-3 text-gray-700 font-bold text-sm sticky left-0 bg-white z-10">Ca</th>
+                    <th className="text-left p-2 text-gray-700 font-bold text-sm sticky left-0 bg-white z-10 w-32">Ca</th>
                     {dayNames.map((day, idx) => (
-                      <th key={idx} className="p-2 text-center text-gray-700 font-bold text-xs w-20">{day}</th>
+                      <th key={idx} className="p-2 text-center text-gray-700 font-bold text-xs">{day}</th>
                     ))}
                   </tr>
                 </thead>
                 <tbody>
                   {shifts.map((shift, shiftIdx) => (
                     <tr key={shift.id} className={`border-b ${shiftIdx % 2 === 0 ? 'bg-white' : 'bg-gray-50'}`}>
-                      <td className="p-3 sticky left-0 bg-inherit z-10">
-                        <div className="flex items-center gap-2">
-                          <div className="w-3 h-3 rounded-full" style={{ backgroundColor: shift.color }} />
-                          <input
-                            type="text"
-                            value={shift.name}
-                            onChange={(e) => updateShiftName(shift.id, e.target.value)}
-                            className="font-semibold text-sm text-gray-800 bg-white border-none focus:outline-none focus:ring-1 focus:ring-blue-500 rounded px-1"
-                          />
+                      <td className="p-2 sticky left-0 bg-inherit z-10 w-32">
+                        <div className="flex items-center gap-1.5">
+                          <div className="w-3 h-3 rounded-full shrink-0" style={{ backgroundColor: shift.color }} />
+                          <div className="flex flex-col min-w-0">
+                            <input
+                              type="text"
+                              value={shift.name}
+                              onChange={(e) => updateShiftName(shift.id, e.target.value)}
+                              className="font-semibold text-sm text-gray-800 bg-white border-none focus:outline-none focus:ring-1 focus:ring-blue-500 rounded px-1 w-full min-w-0"
+                            />
+                            <span className="text-xs text-gray-500 px-1">
+                              {shift.start_time.substring(0, 5)}-{shift.end_time.substring(0, 5)}
+                            </span>
+                          </div>
                         </div>
                       </td>
                       {weekDates.map((_, dayIndex) => {
                         const value = getRequirement(dayIndex, shift.id);
                         return (
-                          <td key={dayIndex} className="p-2 text-center w-20">
+                          <td key={dayIndex} className="p-1 text-center">
                             <input
                               type="number"
                               min="0"
@@ -1034,7 +1039,7 @@ export default function FreeScheduleTool() {
                                   setRequirement(dayIndex, shift.id, 0);
                                 }
                               }}
-                              className="w-16 h-12 bg-white border-2 border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 rounded-lg mx-auto font-bold text-lg text-gray-800 text-center transition-all"
+                              className="w-12 h-10 bg-white border-2 border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 rounded-lg mx-auto font-bold text-base text-gray-800 text-center transition-all"
                             />
                           </td>
                         );
