@@ -3,22 +3,22 @@ import { createClient } from '@supabase/supabase-js';
 import { nanoid } from 'nanoid';
 import QRCode from 'qrcode';
 
-// Create Supabase client with service role key (bypasses RLS for server-side operations)
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!,
-  {
-    auth: {
-      autoRefreshToken: false,
-      persistSession: false
-    }
-  }
-);
-
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
     const { staff, shifts, schedule, weekStart } = body;
+
+    // Create Supabase client with service role key (bypasses RLS for server-side operations)
+    const supabase = createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.SUPABASE_SERVICE_ROLE_KEY!,
+      {
+        auth: {
+          autoRefreshToken: false,
+          persistSession: false
+        }
+      }
+    );
 
     // Validate input
     if (!staff || !shifts || !schedule || !weekStart) {
