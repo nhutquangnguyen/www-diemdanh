@@ -1582,7 +1582,7 @@ export default function FreeScheduleTool() {
                           type="text"
                           value={shareModal.url}
                           readOnly
-                          className="w-full min-w-0 px-3 py-2.5 bg-gray-50 border border-gray-300 rounded-lg text-xs font-mono truncate"
+                          className="w-full min-w-0 px-3 py-2.5 bg-gray-50 border border-gray-300 rounded-lg text-xs font-mono truncate text-gray-900"
                         />
                         <button
                           onClick={() => copyToClipboard(shareModal.url)}
@@ -1601,15 +1601,6 @@ export default function FreeScheduleTool() {
                       <div className="text-sm font-semibold text-gray-700 mb-3">Hoặc quét mã QR:</div>
                       <div className="inline-block p-4 bg-white border-2 border-gray-200 rounded-xl">
                         <img src={shareModal.qrCode} alt="QR Code" className="w-48 h-48" />
-                      </div>
-                      <div className="mt-3">
-                        <a
-                          href={shareModal.qrCode}
-                          download="lich-lam-viec-qr.png"
-                          className="text-sm text-blue-600 hover:text-blue-700 font-semibold"
-                        >
-                          Tải xuống QR Code
-                        </a>
                       </div>
                     </div>
 
