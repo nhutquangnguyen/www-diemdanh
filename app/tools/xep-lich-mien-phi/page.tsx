@@ -476,6 +476,16 @@ export default function FreeScheduleTool() {
 
     const dayNames = ['T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'CN'];
 
+    // Helper function to convert hex color to RGB
+    const hexToRgb = (hex: string) => {
+      const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+      return result ? {
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16)
+      } : { r: 255, g: 255, b: 255 };
+    };
+
     // Prepare data for Excel
     const excelData: any[][] = [];
 
@@ -516,6 +526,64 @@ export default function FreeScheduleTool() {
     const colWidths = [{ wch: 15 }, ...staff.map(() => ({ wch: 25 }))];
     ws['!cols'] = colWidths;
 
+    // Apply styles to cells
+    const range = XLSX.utils.decode_range(ws['!ref'] || 'A1');
+
+    for (let R = range.s.r; R <= range.e.r; ++R) {
+      for (let C = range.s.c; C <= range.e.c; ++C) {
+        const cellAddress = XLSX.utils.encode_cell({ r: R, c: C });
+        if (!ws[cellAddress]) continue;
+
+        // Header row styling
+        if (R === 0) {
+          ws[cellAddress].s = {
+            fill: { fgColor: { rgb: "2563EB" } }, // Blue
+            font: { bold: true, color: { rgb: "FFFFFF" } },
+            alignment: { horizontal: "center", vertical: "center" }
+          };
+        }
+        // Date column styling
+        else if (C === 0) {
+          ws[cellAddress].s = {
+            fill: { fgColor: { rgb: "F3F4F6" } }, // Light gray
+            font: { bold: true },
+            alignment: { horizontal: "left", vertical: "center" }
+          };
+        }
+        // Data cells with shift colors
+        else {
+          const cellValue = ws[cellAddress].v;
+          const dayIndex = R - 1;
+          const staffIndex = C - 1;
+          const date = weekDates[dayIndex];
+          const staffMember = staff[staffIndex];
+
+          if (staffMember && date) {
+            const shiftIds = generatedSchedule.assignments[staffMember.id]?.[date] || [];
+            const assignedShifts = shiftIds.map(id => shifts.find(s => s.id === id)).filter(Boolean) as ShiftTemplate[];
+
+            if (assignedShifts.length > 0) {
+              // Use first shift's color
+              const shiftColor = assignedShifts[0].color;
+              const rgb = hexToRgb(shiftColor);
+              ws[cellAddress].s = {
+                fill: { fgColor: { rgb: `${rgb.r.toString(16).padStart(2, '0')}${rgb.g.toString(16).padStart(2, '0')}${rgb.b.toString(16).padStart(2, '0')}`.toUpperCase() } },
+                font: { color: { rgb: "FFFFFF" }, bold: true },
+                alignment: { horizontal: "center", vertical: "center", wrapText: true }
+              };
+            } else if (cellValue === 'OFF') {
+              // OFF styling - light red background
+              ws[cellAddress].s = {
+                fill: { fgColor: { rgb: "FEE2E2" } },
+                font: { color: { rgb: "DC2626" }, bold: true },
+                alignment: { horizontal: "center", vertical: "center" }
+              };
+            }
+          }
+        }
+      }
+    }
+
     // Add worksheet to workbook
     XLSX.utils.book_append_sheet(wb, ws, 'Lịch Làm Việc');
 
@@ -525,7 +593,7 @@ export default function FreeScheduleTool() {
     const filename = `Lich_Lam_Viec_${startDate.getDate()}-${startDate.getMonth() + 1}_den_${endDate.getDate()}-${endDate.getMonth() + 1}.xlsx`;
 
     // Download file
-    XLSX.writeFile(wb, filename);
+    XLSX.writeFile(wb, filename, { bookType: 'xlsx', cellStyles: true });
   }
 
   return (
