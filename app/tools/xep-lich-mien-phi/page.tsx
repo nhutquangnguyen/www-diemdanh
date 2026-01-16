@@ -1255,13 +1255,13 @@ export default function FreeScheduleTool() {
             {/* Share Modal */}
             {shareModal && (
               <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
-                <div className="bg-white rounded-xl shadow-2xl max-w-lg w-full">
+                <div className="bg-white rounded-xl shadow-2xl w-full max-w-[calc(100vw-2rem)] sm:max-w-lg max-h-[90vh] overflow-y-auto">
                   {/* Modal Header */}
-                  <div className="flex items-center justify-between p-6 border-b border-gray-200">
-                    <h3 className="text-2xl font-bold text-gray-800">🎉 Lịch đã sẵn sàng!</h3>
+                  <div className="flex items-center justify-between p-5 border-b border-gray-200">
+                    <h3 className="text-xl font-bold text-gray-800 pr-2">🎉 Lịch đã sẵn sàng!</h3>
                     <button
                       onClick={() => setShareModal(null)}
-                      className="text-gray-400 hover:text-gray-600"
+                      className="text-gray-400 hover:text-gray-600 flex-shrink-0"
                     >
                       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -1270,63 +1270,42 @@ export default function FreeScheduleTool() {
                   </div>
 
                   {/* Modal Body */}
-                  <div className="p-6 space-y-6">
+                  <div className="p-5 space-y-5 overflow-x-hidden">
                     {/* Share URL */}
                     <div>
                       <div className="text-sm font-semibold text-gray-700 mb-2">📱 Chia sẻ với nhân viên:</div>
-                      <div className="flex gap-2">
+                      <div className="space-y-2">
                         <input
                           type="text"
                           value={shareModal.url}
                           readOnly
-                          className="flex-1 px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg text-sm font-mono"
+                          className="w-full px-3 py-2.5 bg-gray-50 border border-gray-300 rounded-lg text-xs font-mono overflow-hidden"
                         />
                         <button
                           onClick={() => copyToClipboard(shareModal.url)}
-                          className="px-4 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold transition-colors flex items-center gap-2"
+                          className="w-full px-4 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold transition-colors flex items-center justify-center gap-2"
                         >
                           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
                           </svg>
-                          Copy
+                          <span>Copy</span>
                         </button>
                       </div>
                     </div>
 
                     {/* QR Code */}
-                    <div className="text-center">
+                    <div className="text-center overflow-hidden">
                       <div className="text-sm font-semibold text-gray-700 mb-3">Hoặc quét mã QR:</div>
                       <div className="inline-block p-4 bg-white border-2 border-gray-200 rounded-xl">
                         <img src={shareModal.qrCode} alt="QR Code" className="w-48 h-48" />
                       </div>
-                      <a
-                        href={shareModal.qrCode}
-                        download="lich-lam-viec-qr.png"
-                        className="inline-block mt-3 text-sm text-blue-600 hover:text-blue-700 font-semibold"
-                      >
-                        Tải xuống QR Code
-                      </a>
-                    </div>
-
-                    {/* Social Share Buttons */}
-                    <div>
-                      <div className="text-sm font-semibold text-gray-700 mb-3">Chia sẻ qua:</div>
-                      <div className="flex gap-2">
+                      <div className="mt-3">
                         <a
-                          href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareModal.url)}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex-1 px-4 py-3 bg-[#1877f2] hover:bg-[#166fe5] text-white rounded-lg font-semibold text-center transition-colors"
+                          href={shareModal.qrCode}
+                          download="lich-lam-viec-qr.png"
+                          className="text-sm text-blue-600 hover:text-blue-700 font-semibold"
                         >
-                          Facebook
-                        </a>
-                        <a
-                          href={`https://zalo.me/share?url=${encodeURIComponent(shareModal.url)}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex-1 px-4 py-3 bg-[#0068ff] hover:bg-[#0052cc] text-white rounded-lg font-semibold text-center transition-colors"
-                        >
-                          Zalo
+                          Tải xuống QR Code
                         </a>
                       </div>
                     </div>
@@ -1337,16 +1316,15 @@ export default function FreeScheduleTool() {
                         <svg className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
-                        <div className="text-sm text-blue-800">
-                          <div className="font-semibold mb-1">Link có hiệu lực {getDaysUntilExpiration(shareModal.expiresAt)} ngày</div>
-                          <div>Muốn link vĩnh viễn và chỉnh sửa được? <a href="/auth/signup" className="underline font-semibold">Đăng ký miễn phí</a></div>
+                        <div className="text-sm text-blue-800 flex-1 min-w-0">
+                          <div className="font-semibold">Link có hiệu lực {getDaysUntilExpiration(shareModal.expiresAt)} ngày</div>
                         </div>
                       </div>
                     </div>
                   </div>
 
                   {/* Modal Footer */}
-                  <div className="p-6 border-t border-gray-200">
+                  <div className="p-5 border-t border-gray-200">
                     <button
                       onClick={() => setShareModal(null)}
                       className="w-full px-6 py-3 bg-gray-200 hover:bg-gray-300 text-gray-800 rounded-lg font-semibold transition-colors"
