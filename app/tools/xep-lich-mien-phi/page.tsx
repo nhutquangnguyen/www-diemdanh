@@ -30,7 +30,10 @@ export default function FreeScheduleTool() {
   const [staffCount, setStaffCount] = useState<string>('5');
   const [shiftOption, setShiftOption] = useState<2 | 3>(2);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [editableShifts, setEditableShifts] = useState<Array<{ name: string; start_time: string; end_time: string }>>([]);
+  const [editableShifts, setEditableShifts] = useState<Array<{ name: string; start_time: string; end_time: string }>>([
+    { name: 'Ca 1', start_time: '08:00', end_time: '12:00' },
+    { name: 'Ca 2', start_time: '12:00', end_time: '18:00' }
+  ]);
 
   const [staff, setStaff] = useState<FreeToolStaff[]>([]);
   const [shifts, setShifts] = useState<ShiftTemplate[]>([]);
@@ -62,6 +65,11 @@ export default function FreeScheduleTool() {
     // Try to load from localStorage
     loadFromLocalStorage();
   }, []);
+
+  // Scroll to top when step changes
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [step]);
 
   // Auto-save to localStorage whenever data changes
   useEffect(() => {
