@@ -44,7 +44,7 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/help/sep-lich-ai" className="text-gray-400 hover:text-white transition-colors">
+                  <Link href="/tools/xep-lich-mien-phi" className="text-gray-400 hover:text-white transition-colors">
                     Xếp lịch AI
                   </Link>
                 </li>
@@ -71,7 +71,7 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/help/sep-lich-ai" className="text-gray-400 hover:text-white transition-colors">
+                  <Link href="/tools/xep-lich-mien-phi" className="text-gray-400 hover:text-white transition-colors">
                     Xếp lịch AI
                   </Link>
                 </li>
