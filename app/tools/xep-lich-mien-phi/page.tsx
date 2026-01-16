@@ -30,6 +30,7 @@ export default function FreeScheduleTool() {
   const [staffCount, setStaffCount] = useState<string>('5');
   const [shiftOption, setShiftOption] = useState<2 | 3>(2);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [editableShifts, setEditableShifts] = useState<Array<{ name: string; start_time: string; end_time: string }>>([]);
 
   const [staff, setStaff] = useState<FreeToolStaff[]>([]);
   const [shifts, setShifts] = useState<ShiftTemplate[]>([]);
@@ -133,69 +134,38 @@ export default function FreeScheduleTool() {
     const shiftColors = ['#3b82f6', '#10b981', '#f59e0b'];
     const newShifts: ShiftTemplate[] = [];
 
-    if (shiftOption === 2) {
-      newShifts.push(
-        {
-          id: 'shift-1',
-          store_id: 'free-tool',
-          name: 'Ca 1',
-          start_time: '08:00:00',
-          end_time: '16:00:00',
-          grace_period_minutes: 15,
-          color: shiftColors[0],
-          created_at: new Date().toISOString(),
-          updated_at: new Date().toISOString()
-        },
-        {
-          id: 'shift-2',
-          store_id: 'free-tool',
-          name: 'Ca 2',
-          start_time: '16:00:00',
-          end_time: '00:00:00',
-          grace_period_minutes: 15,
-          color: shiftColors[1],
-          created_at: new Date().toISOString(),
-          updated_at: new Date().toISOString()
-        }
-      );
-    } else {
-      newShifts.push(
-        {
-          id: 'shift-1',
-          store_id: 'free-tool',
-          name: 'Ca 1',
-          start_time: '08:00:00',
-          end_time: '16:00:00',
-          grace_period_minutes: 15,
-          color: shiftColors[0],
-          created_at: new Date().toISOString(),
-          updated_at: new Date().toISOString()
-        },
-        {
-          id: 'shift-2',
-          store_id: 'free-tool',
-          name: 'Ca 2',
-          start_time: '16:00:00',
-          end_time: '00:00:00',
-          grace_period_minutes: 15,
-          color: shiftColors[1],
-          created_at: new Date().toISOString(),
-          updated_at: new Date().toISOString()
-        },
-        {
-          id: 'shift-3',
-          store_id: 'free-tool',
-          name: 'Ca 3',
-          start_time: '00:00:00',
-          end_time: '08:00:00',
-          grace_period_minutes: 15,
-          color: shiftColors[2],
-          created_at: new Date().toISOString(),
-          updated_at: new Date().toISOString()
-        }
-      );
+    // Use editableShifts if available, otherwise fallback to defaults
+    const shiftsToUse = editableShifts.length > 0 ? editableShifts : [];
+
+    if (shiftsToUse.length === 0) {
+      alert('Vui lòng chọn số ca làm việc (2 hoặc 3 ca)');
+      return;
     }
 
+    // Create shifts from editable values
+    shiftsToUse.forEach((editableShift, index) => {
+      // Ensure 24-hour format (HH:mm)
+      const startTime = editableShift.start_time.includes(':')
+        ? editableShift.start_time
+        : '08:00';
+      const endTime = editableShift.end_time.includes(':')
+        ? editableShift.end_time
+        : '17:00';
+
+      newShifts.push({
+        id: `shift-${index + 1}`,
+        store_id: 'free-tool',
+        name: editableShift.name,
+        start_time: startTime + ':00', // Convert HH:mm to HH:mm:ss
+        end_time: endTime + ':00',     // Convert HH:mm to HH:mm:ss
+        grace_period_minutes: 15,
+        color: shiftColors[index] || shiftColors[0],
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString()
+      });
+    });
+
+    console.log('Created shifts:', newShifts); // Debug log
     setShifts(newShifts);
 
     // Initialize all availability as true (everyone available for all shifts)
@@ -774,7 +744,7 @@ export default function FreeScheduleTool() {
                 max="10"
                 value={staffCount}
                 onChange={(e) => setStaffCount(e.target.value)}
-                className="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                className="w-full px-4 py-3 text-lg border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 bg-white text-gray-900"
                 placeholder="Nhập số từ 2-10"
               />
               <p className="mt-2 text-sm text-gray-500">
@@ -809,32 +779,155 @@ export default function FreeScheduleTool() {
               <label className="block text-sm font-semibold text-gray-700 mb-3">Bạn có mấy ca làm việc?</label>
               <div className="grid grid-cols-2 gap-4">
                 <button
-                  onClick={() => setShiftOption(2)}
-                  className={`p-6 rounded-xl border-2 transition-all ${
+                  onClick={() => {
+                    setShiftOption(2);
+                    setEditableShifts([
+                      { name: 'Ca 1', start_time: '08:00', end_time: '12:00' },
+                      { name: 'Ca 2', start_time: '12:00', end_time: '18:00' }
+                    ]);
+                  }}
+                  className={`py-4 px-6 rounded-xl border-2 transition-all ${
                     shiftOption === 2
                       ? 'border-blue-600 bg-blue-50 shadow-md'
                       : 'border-gray-300 hover:border-blue-300'
                   }`}
                 >
-                  <div className="text-3xl font-bold text-gray-800 mb-2">2 ca</div>
-                  <div className="text-sm text-gray-600">Ca 1: 08:00 - 16:00</div>
-                  <div className="text-sm text-gray-600">Ca 2: 16:00 - 00:00</div>
+                  <div className="text-2xl font-bold text-gray-800">2 ca</div>
                 </button>
                 <button
-                  onClick={() => setShiftOption(3)}
-                  className={`p-6 rounded-xl border-2 transition-all ${
+                  onClick={() => {
+                    setShiftOption(3);
+                    setEditableShifts([
+                      { name: 'Ca 1', start_time: '08:00', end_time: '12:00' },
+                      { name: 'Ca 2', start_time: '12:00', end_time: '16:00' },
+                      { name: 'Ca 3', start_time: '16:00', end_time: '20:00' }
+                    ]);
+                  }}
+                  className={`py-4 px-6 rounded-xl border-2 transition-all ${
                     shiftOption === 3
                       ? 'border-blue-600 bg-blue-50 shadow-md'
                       : 'border-gray-300 hover:border-blue-300'
                   }`}
                 >
-                  <div className="text-3xl font-bold text-gray-800 mb-2">3 ca</div>
-                  <div className="text-sm text-gray-600">Ca 1: 08:00 - 16:00</div>
-                  <div className="text-sm text-gray-600">Ca 2: 16:00 - 00:00</div>
-                  <div className="text-sm text-gray-600">Ca 3: 00:00 - 08:00</div>
+                  <div className="text-2xl font-bold text-gray-800">3 ca</div>
                 </button>
               </div>
             </div>
+
+            {/* Editable Shifts */}
+            {editableShifts.length > 0 && (
+              <div className="mb-8 bg-gray-50 border border-gray-200 rounded-xl p-6">
+                <h3 className="text-lg font-semibold text-gray-800 mb-4">Tùy chỉnh ca làm việc</h3>
+                <div className="space-y-4">
+                  {editableShifts.map((shift, index) => (
+                    <div key={index} className="bg-white border border-gray-300 rounded-lg p-4">
+                      {/* Shift Name */}
+                      <div className="mb-4">
+                        <label className="block text-xs font-semibold text-gray-600 mb-2">Tên ca</label>
+                        <input
+                          type="text"
+                          value={shift.name}
+                          onChange={(e) => {
+                            const newShifts = [...editableShifts];
+                            newShifts[index].name = e.target.value;
+                            setEditableShifts(newShifts);
+                          }}
+                          className="w-full px-3 py-2 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm bg-white text-gray-900"
+                          placeholder="Vd: Ca sáng"
+                        />
+                      </div>
+
+                      {/* Time Inputs - Side by Side */}
+                      <div className="grid grid-cols-2 gap-3">
+                        {/* Start Time */}
+                        <div>
+                          <label className="block text-xs font-semibold text-gray-600 mb-2">Giờ bắt đầu</label>
+                          <div className="flex items-center gap-0.5">
+                            <select
+                              value={shift.start_time.split(':')[0]}
+                              onChange={(e) => {
+                                const newShifts = [...editableShifts];
+                                const [, minutes] = shift.start_time.split(':');
+                                newShifts[index].start_time = `${e.target.value}:${minutes || '00'}`;
+                                setEditableShifts(newShifts);
+                              }}
+                              className="w-12 px-0.5 py-1.5 border-2 border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm text-center appearance-none bg-white text-gray-900"
+                              style={{ backgroundImage: 'none' }}
+                            >
+                              {Array.from({ length: 24 }, (_, i) => (
+                                <option key={i} value={String(i).padStart(2, '0')}>
+                                  {String(i).padStart(2, '0')}
+                                </option>
+                              ))}
+                            </select>
+                            <span className="text-gray-600 text-sm">:</span>
+                            <select
+                              value={shift.start_time.split(':')[1] || '00'}
+                              onChange={(e) => {
+                                const newShifts = [...editableShifts];
+                                const [hours] = shift.start_time.split(':');
+                                newShifts[index].start_time = `${hours}:${e.target.value}`;
+                                setEditableShifts(newShifts);
+                              }}
+                              className="w-12 px-0.5 py-1.5 border-2 border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm text-center appearance-none bg-white text-gray-900"
+                              style={{ backgroundImage: 'none' }}
+                            >
+                              {Array.from({ length: 60 }, (_, i) => (
+                                <option key={i} value={String(i).padStart(2, '0')}>
+                                  {String(i).padStart(2, '0')}
+                                </option>
+                              ))}
+                            </select>
+                          </div>
+                        </div>
+
+                        {/* End Time */}
+                        <div>
+                          <label className="block text-xs font-semibold text-gray-600 mb-2">Giờ kết thúc</label>
+                          <div className="flex items-center gap-0.5">
+                            <select
+                              value={shift.end_time.split(':')[0]}
+                              onChange={(e) => {
+                                const newShifts = [...editableShifts];
+                                const [, minutes] = shift.end_time.split(':');
+                                newShifts[index].end_time = `${e.target.value}:${minutes || '00'}`;
+                                setEditableShifts(newShifts);
+                              }}
+                              className="w-12 px-0.5 py-1.5 border-2 border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm text-center appearance-none bg-white text-gray-900"
+                              style={{ backgroundImage: 'none' }}
+                            >
+                              {Array.from({ length: 24 }, (_, i) => (
+                                <option key={i} value={String(i).padStart(2, '0')}>
+                                  {String(i).padStart(2, '0')}
+                                </option>
+                              ))}
+                            </select>
+                            <span className="text-gray-600 text-sm">:</span>
+                            <select
+                              value={shift.end_time.split(':')[1] || '00'}
+                              onChange={(e) => {
+                                const newShifts = [...editableShifts];
+                                const [hours] = shift.end_time.split(':');
+                                newShifts[index].end_time = `${hours}:${e.target.value}`;
+                                setEditableShifts(newShifts);
+                              }}
+                              className="w-12 px-0.5 py-1.5 border-2 border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm text-center appearance-none bg-white text-gray-900"
+                              style={{ backgroundImage: 'none' }}
+                            >
+                              {Array.from({ length: 60 }, (_, i) => (
+                                <option key={i} value={String(i).padStart(2, '0')}>
+                                  {String(i).padStart(2, '0')}
+                                </option>
+                              ))}
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
 
             <div className="flex gap-3">
               <button
@@ -876,7 +969,7 @@ export default function FreeScheduleTool() {
                   max="10"
                   defaultValue="1"
                   id="bulkApplyValue"
-                  className="w-20 px-3 py-2 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-center font-bold text-lg"
+                  className="w-20 px-3 py-2 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-center font-bold text-lg bg-white text-gray-900"
                 />
                 <button
                   onClick={() => {
@@ -920,7 +1013,7 @@ export default function FreeScheduleTool() {
                             type="text"
                             value={shift.name}
                             onChange={(e) => updateShiftName(shift.id, e.target.value)}
-                            className="font-semibold text-sm text-gray-800 bg-transparent border-none focus:outline-none focus:ring-1 focus:ring-blue-500 rounded px-1"
+                            className="font-semibold text-sm text-gray-800 bg-white border-none focus:outline-none focus:ring-1 focus:ring-blue-500 rounded px-1"
                           />
                         </div>
                       </td>
@@ -1012,7 +1105,7 @@ export default function FreeScheduleTool() {
                               updateStaffName(staffMember.id, e.target.value);
                             }}
                             onClick={(e) => e.stopPropagation()}
-                            className="font-semibold text-gray-800 bg-transparent border-none focus:outline-none focus:ring-1 focus:ring-blue-500 rounded px-1"
+                            className="font-semibold text-gray-800 bg-white border-none focus:outline-none focus:ring-1 focus:ring-blue-500 rounded px-1"
                           />
                           <div className={`text-xs px-2 py-1 rounded-full inline-block ${badgeColor}`}>
                             {available}/{total}
