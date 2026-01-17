@@ -1,6 +1,10 @@
+'use client';
+
 import Link from 'next/link';
 
 export default function FeatureContent() {
+  const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
+
   return (
     <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       {/* Hero Section */}
@@ -14,11 +18,11 @@ export default function FeatureContent() {
           Không cần cài app. Không cần đầu tư thiết bị đắt tiền.
         </p>
         <div className="flex justify-center">
-          <Link href="/auth/signup">
+          <a href={`${appUrl}/auth/signup`}>
             <button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-bold text-lg transition-all shadow-lg hover:shadow-xl">
               Dùng Thử Miễn Phí 7 Ngày
             </button>
-          </Link>
+          </a>
         </div>
       </div>
 
@@ -161,12 +165,12 @@ export default function FeatureContent() {
                   >
                     Tìm hiểu thêm
                   </Link>
-                  <Link
-                    href="/auth/signup"
+                  <a
+                    href={`${appUrl}/auth/signup`}
                     className="inline-block bg-yellow-400 hover:bg-yellow-500 text-purple-900 px-8 py-4 rounded-lg font-bold text-lg transition-all shadow-lg text-center"
                   >
                     Dùng thử ngay
-                  </Link>
+                  </a>
                 </div>
               </div>
               <div className="flex-shrink-0">
@@ -488,11 +492,11 @@ export default function FeatureContent() {
           Tham gia <strong>500+ Chủ Quán Đã Tin Dùng</strong> - quản lý nhân sự hiệu quả hơn với diemdanh.net.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-          <Link href="/auth/signup">
+          <a href={`${appUrl}/auth/signup`}>
             <button className="bg-blue-600 hover:bg-blue-700 text-white px-10 py-5 rounded-lg font-bold text-xl transition-all shadow-xl hover:shadow-2xl">
               Dùng Thử Miễn Phí 7 Ngày
             </button>
-          </Link>
+          </a>
           <Link href="/pricing">
             <button className="bg-white hover:bg-gray-50 text-blue-600 border-2 border-blue-600 px-10 py-5 rounded-lg font-bold text-xl transition-all shadow-lg hover:shadow-xl">
               Xem Chi Tiết Bảng Giá

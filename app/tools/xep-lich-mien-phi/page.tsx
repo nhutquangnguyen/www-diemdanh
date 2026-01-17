@@ -26,6 +26,7 @@ interface FreeToolData {
 }
 
 export default function FreeScheduleTool() {
+  const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
   const [step, setStep] = useState<1 | 2 | 3 | 4 | 5>(1);
   const [staffCount, setStaffCount] = useState<string>('5');
   const [shiftOption, setShiftOption] = useState<2 | 3>(2);
@@ -770,7 +771,7 @@ export default function FreeScheduleTool() {
             {/* Upgrade CTA */}
             <div className="mt-6 p-4 bg-purple-50 border border-purple-200 rounded-lg">
               <p className="text-sm text-purple-800">
-                💡 <strong>Cần nhiều hơn 10 nhân viên?</strong> <a href="/auth/signup" className="underline font-semibold">Đăng ký miễn phí</a> để quản lý không giới hạn nhân viên
+                💡 <strong>Cần nhiều hơn 10 nhân viên?</strong> <a href={`${appUrl}/auth/signup`} className="underline font-semibold">Đăng ký miễn phí</a> để quản lý không giới hạn nhân viên
               </p>
             </div>
           </div>
@@ -955,7 +956,7 @@ export default function FreeScheduleTool() {
             {/* Upgrade CTA */}
             <div className="mt-6 p-4 bg-purple-50 border border-purple-200 rounded-lg">
               <p className="text-sm text-purple-800">
-                💡 <strong>Cần nhiều hơn 3 ca?</strong> <a href="/auth/signup" className="underline font-semibold">Đăng ký miễn phí</a> để tạo không giới hạn ca làm việc
+                💡 <strong>Cần nhiều hơn 3 ca?</strong> <a href={`${appUrl}/auth/signup`} className="underline font-semibold">Đăng ký miễn phí</a> để tạo không giới hạn ca làm việc
               </p>
             </div>
           </div>

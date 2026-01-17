@@ -16,6 +16,7 @@ interface ScheduleData {
 export default function SharedSchedulePage() {
   const params = useParams();
   const shareId = params.id as string;
+  const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -371,7 +372,7 @@ export default function SharedSchedulePage() {
               </a>
               <span className="text-gray-400">hoặc</span>
               <a
-                href="/auth/signup"
+                href={`${appUrl}/auth/signup`}
                 className="text-blue-600 hover:text-blue-700 font-medium hover:underline"
               >
                 Đăng ký tài khoản

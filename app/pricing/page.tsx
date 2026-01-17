@@ -10,6 +10,7 @@ import type { Metadata } from "next";
 
 export default function PricingPage() {
   const [isYearly, setIsYearly] = useState(false);
+  const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
 
   // FAQ Structured Data
   const faqJsonLd = {
@@ -157,11 +158,11 @@ export default function PricingPage() {
               Phù hợp: Quán cafe, tiệm nail, shop thời trang, tiệm bánh
             </div>
 
-            <Link href="/auth/signup">
+            <a href={`${appUrl}/auth/signup`}>
               <button className="w-full bg-gray-200 hover:bg-gray-300 text-gray-800 px-6 py-3 rounded-lg font-semibold transition-all">
                 Bắt Đầu Ngay
               </button>
-            </Link>
+            </a>
           </div>
 
           {/* Standard Plan - POPULAR */}
@@ -235,11 +236,11 @@ export default function PricingPage() {
               Phù hợp: Nhà hàng, quán trà sữa lớn, siêu thị mini
             </div>
 
-            <Link href="/auth/signup">
+            <a href={`${appUrl}/auth/signup`}>
               <button className="w-full bg-white text-blue-600 hover:bg-gray-100 px-6 py-3 rounded-lg font-bold transition-all shadow-lg">
                 Bắt Đầu Ngay
               </button>
-            </Link>
+            </a>
           </div>
 
           {/* Enterprise Plan */}
@@ -309,11 +310,11 @@ export default function PricingPage() {
               Phù hợp: Chuỗi cửa hàng, chuỗi nhà hàng, franchise
             </div>
 
-            <Link href="/auth/signup">
+            <a href={`${appUrl}/auth/signup`}>
               <button className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white px-6 py-3 rounded-lg font-semibold transition-all">
                 Bắt Đầu Ngay
               </button>
-            </Link>
+            </a>
           </div>
         </div>
 
@@ -561,11 +562,11 @@ export default function PricingPage() {
             Tham gia <strong>500+ Chủ Quán Đã Tin Dùng</strong> - tiết kiệm thời gian và chi phí với diemdanh.net
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
-            <Link href="/auth/signup">
+            <a href={`${appUrl}/auth/signup`}>
               <button className="bg-white text-blue-600 hover:bg-gray-100 px-10 py-5 rounded-lg font-bold text-xl transition-all shadow-lg">
                 Dùng Thử Miễn Phí 7 Ngày
               </button>
-            </Link>
+            </a>
             <Link href="/">
               <button className="border-2 border-white hover:bg-white hover:bg-opacity-10 px-10 py-5 rounded-lg font-bold text-xl transition-all">
                 Xem Tính Năng

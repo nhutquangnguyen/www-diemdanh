@@ -15,6 +15,8 @@ export const metadata: Metadata = {
 };
 
 export default function AboutPage() {
+  const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
+
   return (
     <MarketingLayout>
       <main className="bg-gradient-to-br from-blue-50 to-indigo-100">
@@ -30,16 +32,16 @@ export default function AboutPage() {
             <span className="font-semibold text-blue-600">chính xác, nhanh chóng và tiết kiệm</span>
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
-            <Link href="/auth/signup">
+            <a href={`${appUrl}/auth/signup`}>
               <button className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white px-10 py-4 rounded-lg font-bold text-lg transition-all shadow-xl hover:shadow-2xl">
                 Dùng Thử Miễn Phí 7 Ngày
               </button>
-            </Link>
-            <Link href="/auth/login">
+            </a>
+            <a href={`${appUrl}/auth/login`}>
               <button className="w-full sm:w-auto bg-white hover:bg-gray-50 text-gray-800 border-2 border-gray-300 px-10 py-4 rounded-lg font-semibold text-lg transition-all">
                 Đăng Nhập
               </button>
-            </Link>
+            </a>
           </div>
           <p className="text-sm text-gray-600">
             Miễn phí 100% trong giai đoạn Beta • Không cần thẻ tín dụng
@@ -214,11 +216,11 @@ export default function AboutPage() {
                 ✓ Không cần thẻ tín dụng
               </p>
             </div>
-            <Link href="/auth/signup">
+            <a href={`${appUrl}/auth/signup`}>
               <button className="bg-white hover:bg-gray-100 text-blue-600 px-12 py-4 rounded-lg font-bold text-lg transition-all shadow-xl hover:shadow-2xl">
                 Đăng Ký Miễn Phí Ngay
               </button>
-            </Link>
+            </a>
           </div>
 
           <h3 className="text-2xl font-bold text-gray-800 mb-6 text-center">
@@ -368,11 +370,11 @@ export default function AboutPage() {
             Hàng trăm doanh nghiệp đã tin tưởng. Đăng ký ngay hôm nay và trải nghiệm sự khác biệt.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
-            <Link href="/auth/signup">
+            <a href={`${appUrl}/auth/signup`}>
               <button className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white px-12 py-4 rounded-lg font-bold text-lg transition-all shadow-lg hover:shadow-xl">
                 Dùng Thử Miễn Phí
               </button>
-            </Link>
+            </a>
             <Link href="/">
               <button className="w-full sm:w-auto bg-white hover:bg-gray-50 text-gray-700 border-2 border-gray-300 px-12 py-4 rounded-lg font-semibold text-lg transition-all">
                 Về Trang Chủ

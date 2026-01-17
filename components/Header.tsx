@@ -8,6 +8,7 @@ import { supabase } from '@/lib/supabase';
 
 export default function Header() {
   const router = useRouter();
+  const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
   // Initialize with null to match server render, then hydrate with sync check
   const [user, setUser] = useState<any>(null);
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -204,11 +205,11 @@ export default function Header() {
                     </div>
                   </>
                 ) : (
-                  <Link href="/auth/login">
+                  <a href={`${appUrl}/auth/login`}>
                     <button className="bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white px-4 sm:px-6 py-2 rounded-lg font-semibold text-sm sm:text-base transition-all">
                       Đăng Nhập
                     </button>
-                  </Link>
+                  </a>
                 )}
           </div>
         </div>
