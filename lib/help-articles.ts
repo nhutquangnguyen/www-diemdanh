@@ -44,6 +44,15 @@ export const helpArticles: HelpArticle[] = [
     icon: '📱',
     readTime: 2,
   },
+  {
+    slug: 'cap-quyen',
+    title: 'Cấp Quyền Truy Cập',
+    description: 'Hướng dẫn cấp quyền Vị Trí và Camera để sử dụng đầy đủ tính năng',
+    category: 'getting-started',
+    icon: '🔐',
+    readTime: 3,
+    popular: true,
+  },
 ];
 
 export const categories = {

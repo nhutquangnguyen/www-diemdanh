@@ -87,6 +87,11 @@ export default function HelpLayout({ children }: HelpLayoutProps) {
                     Cài Đặt App
                   </Link>
                 </li>
+                <li>
+                  <Link href="/help/cap-quyen" className="text-gray-400 hover:text-white transition-colors">
+                    Cấp Quyền
+                  </Link>
+                </li>
               </ul>
             </div>
 
