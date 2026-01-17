@@ -380,7 +380,7 @@ export default function AboutPage() {
             </Link>
           </div>
           <p className="text-sm text-gray-500">
-            Có câu hỏi? <a href="mailto:support@diemdanh.net" className="text-blue-600 hover:underline font-semibold">Liên hệ với chúng tôi</a>
+            Có câu hỏi? <a href="mailto:office.obn@gmail.com" className="text-blue-600 hover:underline font-semibold">Liên hệ với chúng tôi</a>
           </p>
         </div>
       </div>
