@@ -247,24 +247,14 @@ export default function PricingPage() {
           <div className="bg-white rounded-2xl shadow-lg p-8 hover:shadow-xl transition-all border-2 border-gray-200">
             <div className="text-center mb-6">
               <h3 className="text-2xl font-bold text-gray-800 mb-4">🌐 Gói Chuỗi Hệ Thống</h3>
-              {isYearly ? (
-                <div>
-                  <div className="flex items-baseline justify-center gap-1 mb-2">
-                    <span className="text-5xl font-bold text-gray-800">2,678K</span>
-                    <span className="text-gray-500">/năm</span>
-                  </div>
-                  <div className="text-sm text-gray-500">
-                    <span className="line-through">3,348K</span>
-                    <span className="ml-2 text-green-600 font-semibold">Tiết kiệm 670K</span>
-                  </div>
-                  <div className="text-xs text-gray-400 mt-1">(~223K/tháng)</div>
-                </div>
-              ) : (
-                <div className="flex items-baseline justify-center gap-1 mb-4">
-                  <span className="text-5xl font-bold text-gray-800">279K</span>
-                  <span className="text-gray-500">/tháng</span>
-                </div>
-              )}
+              <div className="mb-4">
+                <a href="tel:+84945454145" className="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-lg font-bold text-lg transition-all shadow-md">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                  </svg>
+                  Gọi tư vấn
+                </a>
+              </div>
             </div>
 
             <ul className="space-y-3 mb-8">
@@ -306,15 +296,9 @@ export default function PricingPage() {
               </li>
             </ul>
 
-            <div className="bg-gray-100 rounded-lg p-3 text-center text-sm text-gray-600 mb-6">
+            <div className="bg-gray-100 rounded-lg p-3 text-center text-sm text-gray-600">
               Phù hợp: Chuỗi cửa hàng, chuỗi nhà hàng, franchise
             </div>
-
-            <a href={`${appUrl}/auth/signup`}>
-              <button className="w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white px-6 py-3 rounded-lg font-semibold transition-all">
-                Bắt Đầu Ngay
-              </button>
-            </a>
           </div>
         </div>
 
@@ -490,7 +474,7 @@ export default function PricingPage() {
               <p className="text-gray-600 mt-4">
                 <strong>🏠 Gói Cửa Hàng (79K/tháng)</strong> phù hợp với 1 cửa hàng, tối đa 9 nhân viên (quán cafe, tiệm nail, shop thời trang).<br/>
                 <strong>🏢 Gói Doanh Nghiệp (179K/tháng)</strong> dành cho tối đa 3 chi nhánh, tối đa 30 nhân viên (nhà hàng, quán trà sữa lớn, siêu thị mini).<br/>
-                <strong>🌐 Gói Chuỗi Hệ Thống (279K/tháng)</strong> cho chuỗi cửa hàng lớn, không giới hạn chi nhánh & nhân viên (chuỗi nhà hàng, franchise).
+                <strong>🌐 Gói Chuỗi Hệ Thống</strong> cho chuỗi cửa hàng lớn, không giới hạn chi nhánh & nhân viên (chuỗi nhà hàng, franchise). Gọi <a href="tel:+84945454145" className="text-blue-600 hover:text-blue-700 font-bold">094 545 4145</a> để tư vấn.
               </p>
             </details>
 
@@ -521,7 +505,7 @@ export default function PricingPage() {
                 Có! Thanh toán theo năm sẽ được giảm ngay 20% so với thanh toán theo tháng:<br/>
                 • <strong>🏠 Gói Cửa Hàng:</strong> 758K/năm (tiết kiệm 190K)<br/>
                 • <strong>🏢 Gói Doanh Nghiệp:</strong> 1,718K/năm (tiết kiệm 430K)<br/>
-                • <strong>🌐 Gói Chuỗi Hệ Thống:</strong> 2,678K/năm (tiết kiệm 670K)<br/>
+                • <strong>🌐 Gói Chuỗi Hệ Thống:</strong> Gọi <a href="tel:+84945454145" className="text-blue-600 hover:text-blue-700 font-bold">094 545 4145</a> để biết ưu đãi đặc biệt<br/>
                 Chỉ cần bật nút "Thanh toán theo năm" ở trên để xem giá ưu đãi.
               </p>
             </details>
