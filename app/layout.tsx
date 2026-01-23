@@ -45,7 +45,9 @@ export const metadata: Metadata = {
   },
 };
 
-export const dynamic = 'force-dynamic';
+// Removed 'force-dynamic' to enable static generation for marketing pages
+// Only dynamic routes (like /s/[id]) will be server-rendered
+// This dramatically improves performance by enabling caching
 
 export default function RootLayout({
   children,

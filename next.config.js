@@ -7,9 +7,17 @@ const nextConfig = {
         hostname: '*.supabase.co',
       },
     ],
+    formats: ['image/avif', 'image/webp'], // Modern image formats
   },
-  // Disable static page generation to prevent build-time environment variable issues
-  output: 'standalone',
+
+  // Performance optimizations
+  compress: true, // Enable gzip compression
+  poweredByHeader: false, // Remove X-Powered-By header for security
+
+  // Turbpack is default in Next.js 16 for dev, use webpack for production
+  experimental: {
+    optimizePackageImports: ['exceljs', 'html2canvas', 'jspdf'], // Tree-shake large packages
+  },
 }
 
 module.exports = nextConfig
