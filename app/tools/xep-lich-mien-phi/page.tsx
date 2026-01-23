@@ -9,6 +9,7 @@ import type {
   ShiftTemplate
 } from '@/types';
 import ExcelJS from 'exceljs';
+import { getAppUrl } from '@/lib/env';
 
 // Simple staff interface for free tool (no database)
 interface FreeToolStaff {
@@ -26,7 +27,7 @@ interface FreeToolData {
 }
 
 export default function FreeScheduleTool() {
-  const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
+  const appUrl = getAppUrl();
   const [step, setStep] = useState<1 | 2 | 3 | 4 | 5>(1);
   const [staffCount, setStaffCount] = useState<string>('5');
   const [shiftOption, setShiftOption] = useState<2 | 3>(2);
@@ -614,7 +615,7 @@ export default function FreeScheduleTool() {
             {/* Auth Button - Desktop */}
             <div className="hidden md:flex items-center">
               <a
-                href={`${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/auth/login`}
+                href={`${appUrl}/auth/login`}
                 className="px-6 py-2.5 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-lg font-semibold hover:shadow-lg hover:scale-105 transition-all"
               >
                 Đăng Nhập
@@ -667,7 +668,7 @@ export default function FreeScheduleTool() {
                 </a>
                 <div className="pt-4 mt-2 border-t border-gray-100">
                   <a
-                    href={`${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/auth/login`}
+                    href={`${appUrl}/auth/login`}
                     className="block text-center px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-lg font-semibold hover:shadow-lg transition-all"
                   >
                     Đăng Nhập

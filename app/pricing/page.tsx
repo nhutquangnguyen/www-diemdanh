@@ -4,13 +4,14 @@ import { useState } from 'react';
 import Link from 'next/link';
 import MarketingLayout from '@/components/MarketingLayout';
 import type { Metadata } from "next";
+import { getAppUrl } from '@/lib/env';
 
 // Note: Metadata export moved to parent layout since this is a client component
 // SEO handled via layout.tsx and structured data
 
 export default function PricingPage() {
   const [isYearly, setIsYearly] = useState(false);
-  const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
+  const appUrl = getAppUrl();
 
   // FAQ Structured Data
   const faqJsonLd = {

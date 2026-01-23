@@ -1,9 +1,10 @@
 'use client';
 
 import Link from 'next/link';
+import { getAppUrl } from '@/lib/env';
 
 export default function FeatureContent() {
-  const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
+  const appUrl = getAppUrl();
 
   return (
     <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">

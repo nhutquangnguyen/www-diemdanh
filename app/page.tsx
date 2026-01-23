@@ -3,9 +3,10 @@
 import Link from 'next/link';
 import MarketingLayout from '@/components/MarketingLayout';
 import FeatureContent from '@/components/FeatureContent';
+import { getAppUrl } from '@/lib/env';
 
 export default function Home() {
-  const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
+  const appUrl = getAppUrl();
 
   return (
     <MarketingLayout>

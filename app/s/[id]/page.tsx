@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 import type { ShiftTemplate } from '@/types';
+import { getAppUrl } from '@/lib/env';
 
 interface ScheduleData {
   staff: Array<{ id: string; display_name: string }>;
@@ -16,7 +17,7 @@ interface ScheduleData {
 export default function SharedSchedulePage() {
   const params = useParams();
   const shareId = params.id as string;
-  const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
+  const appUrl = getAppUrl();
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -193,7 +194,7 @@ export default function SharedSchedulePage() {
             {/* Auth Button - Desktop */}
             <div className="hidden md:flex items-center">
               <a
-                href={`${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/auth/login`}
+                href={`${appUrl}/auth/login`}
                 className="px-6 py-2.5 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-lg font-semibold hover:shadow-lg hover:scale-105 transition-all"
               >
                 Đăng Nhập
@@ -246,7 +247,7 @@ export default function SharedSchedulePage() {
                 </a>
                 <div className="pt-4 mt-2 border-t border-gray-100">
                   <a
-                    href={`${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/auth/login`}
+                    href={`${appUrl}/auth/login`}
                     className="block text-center px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-lg font-semibold hover:shadow-lg transition-all"
                   >
                     Đăng Nhập
