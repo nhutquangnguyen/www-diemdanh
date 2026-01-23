@@ -10,6 +10,7 @@ import type {
 } from '@/types';
 import ExcelJS from 'exceljs';
 import { getAppUrl } from '@/lib/env';
+import MarketingLayout from '@/components/MarketingLayout';
 
 // Simple staff interface for free tool (no database)
 interface FreeToolStaff {
@@ -31,7 +32,6 @@ export default function FreeScheduleTool() {
   const [step, setStep] = useState<1 | 2 | 3 | 4 | 5>(1);
   const [staffCount, setStaffCount] = useState<string>('5');
   const [shiftOption, setShiftOption] = useState<2 | 3>(2);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [editableShifts, setEditableShifts] = useState<Array<{ name: string; start_time: string; end_time: string }>>([
     { name: 'Ca 1', start_time: '08:00', end_time: '12:00' },
     { name: 'Ca 2', start_time: '12:00', end_time: '18:00' }
@@ -580,108 +580,10 @@ export default function FreeScheduleTool() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col overflow-x-hidden">
-      {/* Header */}
-      <header className="bg-white/95 backdrop-blur-sm border-b border-gray-100 sticky top-0 z-50 shadow-sm">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between py-4">
-            {/* Logo */}
-            <a href="/" className="flex items-center gap-3 group">
-              <div className="w-11 h-11 bg-gradient-to-br from-blue-500 to-green-500 rounded-full flex items-center justify-center shadow-md group-hover:shadow-lg transition-all">
-                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                </svg>
-              </div>
-              <div className="flex flex-col">
-                <span className="font-bold text-xl text-blue-600 leading-tight">diemdanh.net</span>
-                <span className="text-xs text-gray-500 leading-tight">Chấm công thông minh</span>
-              </div>
-            </a>
-
-            {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center gap-1">
-              <a href="/pricing" className="px-4 py-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all font-medium">
-                Bảng Giá
-              </a>
-              <a href="/tools/xep-lich-mien-phi" className="px-4 py-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all font-medium flex items-center gap-1">
-                <span>Xếp lịch AI</span>
-                <span className="text-xs bg-gradient-to-r from-purple-500 to-pink-500 text-white px-2 py-0.5 rounded-full font-semibold">NEW</span>
-              </a>
-              <a href="/help" className="px-4 py-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all font-medium">
-                Trợ Giúp
-              </a>
-            </nav>
-
-            {/* Auth Button - Desktop */}
-            <div className="hidden md:flex items-center">
-              <a
-                href={`${appUrl}/auth/login`}
-                className="px-6 py-2.5 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-lg font-semibold hover:shadow-lg hover:scale-105 transition-all"
-              >
-                Đăng Nhập
-              </a>
-            </div>
-
-            {/* Mobile Menu Button */}
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all"
-              aria-label="Toggle menu"
-            >
-              {mobileMenuOpen ? (
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              ) : (
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-              )}
-            </button>
-          </div>
-
-          {/* Mobile Menu */}
-          {mobileMenuOpen && (
-            <div className="md:hidden py-4 border-t border-gray-100 bg-white/95 backdrop-blur-sm">
-              <nav className="flex flex-col space-y-1">
-                <a
-                  href="/pricing"
-                  className="text-gray-700 hover:text-blue-600 hover:bg-blue-50 font-medium py-3 px-4 rounded-lg transition-all"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  Bảng Giá
-                </a>
-                <a
-                  href="/tools/xep-lich-mien-phi"
-                  className="text-gray-700 hover:text-blue-600 hover:bg-blue-50 font-medium py-3 px-4 rounded-lg transition-all flex items-center justify-between"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  <span>Xếp lịch AI</span>
-                  <span className="text-xs bg-gradient-to-r from-purple-500 to-pink-500 text-white px-2 py-0.5 rounded-full font-semibold">NEW</span>
-                </a>
-                <a
-                  href="/help"
-                  className="text-gray-700 hover:text-blue-600 hover:bg-blue-50 font-medium py-3 px-4 rounded-lg transition-all"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  Trợ Giúp
-                </a>
-                <div className="pt-4 mt-2 border-t border-gray-100">
-                  <a
-                    href={`${appUrl}/auth/login`}
-                    className="block text-center px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-lg font-semibold hover:shadow-lg transition-all"
-                  >
-                    Đăng Nhập
-                  </a>
-                </div>
-              </nav>
-            </div>
-          )}
-        </div>
-      </header>
-
-      {/* Main Content */}
-      <main className="flex-1">
+    <MarketingLayout>
+      <div className="min-h-screen bg-gray-50 flex flex-col overflow-x-hidden">
+        {/* Main Content */}
+        <main className="flex-1">
         {/* Hero Header */}
         <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-12 sm:py-16 px-4">
           <div className="max-w-4xl mx-auto text-center">
@@ -1635,92 +1537,7 @@ export default function FreeScheduleTool() {
         )}
       </div>
       </main>
-
-      {/* Footer */}
-      <footer className="bg-gradient-to-r from-gray-900 to-gray-800 text-white mt-20">
-        <div className="container mx-auto px-4 py-12">
-          <div className="grid md:grid-cols-4 gap-8">
-            {/* About */}
-            <div>
-              <h3 className="font-bold text-lg mb-4">diemdanh.net</h3>
-              <p className="text-gray-400 text-sm">
-                Hệ thống điểm danh và quản lý lịch làm việc thông minh cho doanh nghiệp
-              </p>
-            </div>
-
-            {/* Quick Links */}
-            <div>
-              <h3 className="font-bold text-lg mb-4">Liên Kết</h3>
-              <ul className="space-y-2 text-sm">
-                <li>
-                  <a href="/" className="text-gray-400 hover:text-white transition-colors">
-                    Trang Chủ
-                  </a>
-                </li>
-                <li>
-                  <a href="/pricing" className="text-gray-400 hover:text-white transition-colors">
-                    Bảng Giá
-                  </a>
-                </li>
-                <li>
-                  <a href="/tools/xep-lich-mien-phi" className="text-gray-400 hover:text-white transition-colors">
-                    Xếp lịch AI
-                  </a>
-                </li>
-                <li>
-                  <a href="/help" className="text-gray-400 hover:text-white transition-colors">
-                    Trợ Giúp
-                  </a>
-                </li>
-              </ul>
-            </div>
-
-            {/* Help Center */}
-            <div>
-              <h3 className="font-bold text-lg mb-4">Trợ Giúp</h3>
-              <ul className="space-y-2 text-sm">
-                <li>
-                  <a href="/help/bat-dau" className="text-gray-400 hover:text-white transition-colors">
-                    Bắt Đầu
-                  </a>
-                </li>
-                <li>
-                  <a href="/help/diem-danh" className="text-gray-400 hover:text-white transition-colors">
-                    Điểm Danh
-                  </a>
-                </li>
-                <li>
-                  <a href="/tools/xep-lich-mien-phi" className="text-gray-400 hover:text-white transition-colors">
-                    Xếp lịch AI
-                  </a>
-                </li>
-                <li>
-                  <a href="/help/cai-dat-app" className="text-gray-400 hover:text-white transition-colors">
-                    Cài Đặt App
-                  </a>
-                </li>
-              </ul>
-            </div>
-
-            {/* Contact */}
-            <div>
-              <h3 className="font-bold text-lg mb-4">Liên Hệ</h3>
-              <ul className="space-y-2 text-sm text-gray-400">
-                <li className="flex items-center gap-2">
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                  </svg>
-                  office.obn@gmail.com
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <div className="border-t border-gray-700 mt-8 pt-8 text-center text-sm text-gray-400">
-            <p>© 2024 diemdanh.net. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
-    </div>
+      </div>
+    </MarketingLayout>
   );
 }

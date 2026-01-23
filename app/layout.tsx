@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import NavigationLoader from '@/components/NavigationLoader';
 
 export const metadata: Metadata = {
   title: "diemdanh.net - Hệ Thống Điểm Danh Thông Minh",
@@ -130,6 +131,7 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased">
+        <NavigationLoader />
         {children}
       </body>
     </html>

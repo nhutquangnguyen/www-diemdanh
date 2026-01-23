@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import NavLink from './NavLink';
 import { getAppUrl } from '@/lib/env';
 
 export default function MarketingHeader() {
@@ -27,16 +28,16 @@ export default function MarketingHeader() {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-1">
-            <Link href="/pricing" className="px-4 py-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all font-medium">
+            <NavLink href="/pricing" className="px-4 py-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all font-medium">
               Bảng Giá
-            </Link>
-            <Link href="/tools/xep-lich-mien-phi" className="px-4 py-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all font-medium flex items-center gap-1">
+            </NavLink>
+            <NavLink href="/tools/xep-lich-mien-phi" className="px-4 py-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all font-medium flex items-center">
               <span>Xếp lịch AI</span>
-              <span className="text-xs bg-gradient-to-r from-purple-500 to-pink-500 text-white px-2 py-0.5 rounded-full font-semibold">NEW</span>
-            </Link>
-            <Link href="/help" className="px-4 py-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all font-medium">
+              <span className="ml-2 text-xs bg-gradient-to-r from-green-500 to-emerald-500 text-white px-2 py-0.5 rounded-full font-semibold">FREE</span>
+            </NavLink>
+            <NavLink href="/help" className="px-4 py-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all font-medium">
               Trợ Giúp
-            </Link>
+            </NavLink>
           </nav>
 
           {/* Auth Button - Desktop */}
@@ -71,28 +72,28 @@ export default function MarketingHeader() {
         {mobileMenuOpen && (
           <div className="md:hidden py-4 border-t border-gray-100 bg-white/95 backdrop-blur-sm">
             <nav className="flex flex-col space-y-1">
-              <Link
+              <NavLink
                 href="/pricing"
                 className="text-gray-700 hover:text-blue-600 hover:bg-blue-50 font-medium py-3 px-4 rounded-lg transition-all"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Bảng Giá
-              </Link>
-              <Link
+              </NavLink>
+              <NavLink
                 href="/tools/xep-lich-mien-phi"
-                className="text-gray-700 hover:text-blue-600 hover:bg-blue-50 font-medium py-3 px-4 rounded-lg transition-all flex items-center justify-between"
+                className="text-gray-700 hover:text-blue-600 hover:bg-blue-50 font-medium py-3 px-4 rounded-lg transition-all flex items-center"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 <span>Xếp lịch AI</span>
-                <span className="text-xs bg-gradient-to-r from-purple-500 to-pink-500 text-white px-2 py-0.5 rounded-full font-semibold">NEW</span>
-              </Link>
-              <Link
+                <span className="ml-3 text-xs bg-gradient-to-r from-green-500 to-emerald-500 text-white px-2 py-0.5 rounded-full font-semibold">FREE</span>
+              </NavLink>
+              <NavLink
                 href="/help"
                 className="text-gray-700 hover:text-blue-600 hover:bg-blue-50 font-medium py-3 px-4 rounded-lg transition-all"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Trợ Giúp
-              </Link>
+              </NavLink>
               <div className="pt-4 mt-2 border-t border-gray-100">
                 <a
                   href={`${appUrl}/auth/login`}
